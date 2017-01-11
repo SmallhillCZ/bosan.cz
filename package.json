@@ -1,5 +1,5 @@
 {
-  "name": "bosan.cz",
+  "name": "bosan-cz",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SmallhillCZ/bosan.cz.git"
+    "url": "git+https://github.com/SmallhillCZ/bosan-cz.git"
   },
   "author": "Martin Kopeček <martin.kopecek@smallhill.cz>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SmallhillCZ/bosan.cz/issues"
+    "url": "https://github.com/SmallhillCZ/bosan-cz/issues"
   },
-  "homepage": "https://github.com/SmallhillCZ/bosan.cz#readme",
+  "homepage": "https://github.com/SmallhillCZ/bosan-cz#readme",
   "dependencies": {
     "@angular/common": "~2.4.0",
     "@angular/compiler": "~2.4.0",

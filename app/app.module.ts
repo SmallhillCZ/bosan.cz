@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent }  from './app.component';
 
 // Views components
+import { FrontPageComponent }  from './views/front-page/front-page.component';
 
 // Services
 import { DataService } 		from './services/data.service';
@@ -13,8 +14,7 @@ import { ToastService } 		from './services/toast.service';
 import { UserService } 		from './services/user.service';
 
 // Import Modules
-//import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+//import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 // Shared coremponents
 
@@ -41,7 +41,7 @@ export function getAuthHttp(http) {
 	],
   declarations: [
 		AppComponent,
-		/* VIEWS */
+		/* VIEWS */ FrontPageComponent,
 		/* Shared Components */
 		/* PIPES */ MoneyPipe
 	],
