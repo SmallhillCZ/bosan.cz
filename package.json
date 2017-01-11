@@ -1,0 +1,64 @@
+{
+  "name": "bosan.cz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "concurrently \"tsc -w\" \"nodemon server/server-dev.js\"",
+    "build": "ngc -p tsconfig-aot.json && rollup -c rollup-config.js",
+    "db": "cd ./node_modules/mongo-express/ && node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmallhillCZ/bosan.cz.git"
+  },
+  "author": "Martin Kopeček <martin.kopecek@smallhill.cz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SmallhillCZ/bosan.cz/issues"
+  },
+  "homepage": "https://github.com/SmallhillCZ/bosan.cz#readme",
+  "dependencies": {
+    "@angular/common": "~2.4.0",
+    "@angular/compiler": "~2.4.0",
+    "@angular/core": "~2.4.0",
+    "@angular/forms": "~2.4.0",
+    "@angular/http": "~2.4.0",
+    "@angular/platform-browser": "~2.4.0",
+    "@angular/platform-browser-dynamic": "~2.4.0",
+    "@angular/router": "~3.4.0",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.14",
+    "@types/node": "^7.0.0",
+    "angular2-jwt": "^0.1.27",
+    "batch-stream": "^0.1.3",
+    "bcrypt": "^1.0.1",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.6",
+    "compression": "^1.6.2",
+    "core-js": "^2.4.1",
+    "express": "^4.14.0",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.2.1",
+    "mongodb": "^2.2.19",
+    "mongoose": "^4.6.6",
+    "multer": "^1.2.0",
+    "ng2-bootstrap": "^1.1.16",
+    "ng2-file-upload": "^1.1.4-2",
+    "path": "^0.12.7",
+    "rxjs": "5.0.3",
+    "systemjs": "0.19.41",
+    "zone.js": "^0.7.4"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "^2.4.2",
+    "concurrently": "^3.0.0",
+    "mongo-express": "^0.35.0",
+    "nodemon": "^1.11.0",
+    "rollup": "^0.41.1",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-uglify": "^1.0.1",
+    "typescript": "^2.1.1"
+  }
+}
