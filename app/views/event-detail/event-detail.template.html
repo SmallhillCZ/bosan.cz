@@ -1,0 +1,22 @@
+<div *ngIf="event">
+	<h2>{{event.name}}</h2>
+
+	<p>Od: {{event.from | date:'EEE d. M. y'}}, Do: {{event.till | date:'EEE d. M. y'}}</p>
+
+	<h3>Popis</h3>
+	<p>{{event.description}}</p>
+
+	<h3>Co s sebou</h3>
+	<p></p>
+
+	<div *ngIf="event.rsvp">
+		<h3>Seznam účastníků:</h3>
+		<p>
+			Moje účast: <a [class.na]="!getRSVP(event)" (click)="setRSVP(event,true)">Zúčastním se</a> | <a [class.na]="getRSVP(event)" (click)="setRSVP(event,false)">Nezúčastním se</a>
+		</p>
+
+		<ul>
+			<li *ngFor="let user of event.rsvp">{{user.name}}</li>
+		</ul>
+	</div>
+</div>

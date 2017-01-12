@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
 
 import { DataService } from '../../services/data.service';
 import { ToastService } from '../../services/toast.service';
@@ -6,42 +7,39 @@ import { UserService } from '../../services/user.service';
 
 @Component({
 	moduleId: module.id,
-	selector: 'front-page',
-	templateUrl: 'front-page.template.html',
-	styleUrls: ['front-page.style.css']
+	selector: 'event-detail',
+	templateUrl: 'event-detail.template.html',
+	styleUrls: ['event-detail.style.css']
 })
-export class FrontPageComponent {
+export class EventDetailComponent {
 	
-	events: any[] = [];
-
+	event;
+	
 	user: any;
 
-	constructor(private dataService: DataService, private toastService: ToastService, private userService: UserService) {
+	constructor(private dataService: DataService, private toastService: ToastService, private userService: UserService, private route: ActivatedRoute) {
+		
 		this.user = this.userService.user;
 		
-		this.loadEvents();
+		this.route.params.subscribe((params: Params) => this.loadEvent(params['id']));
 	}
 
-	loadEvents(){
+	loadEvent(id){
 		
-		var loadingToast = this.toastService.toast("Načítám akce...","notice");
+		var loadingToast = this.toastService.toast("Načítám akci...","notice");
 		
-		this.dataService.getEvents()
-			.then(events => {
+		this.dataService.getEvent(id)
+			.then(event => {
 				loadingToast.hide();
-				this.events = events;
+				this.event = event;
 			})
 			.catch(err => {
 				loadingToast.hide();
-				this.toastService.toast("Nastala chyba při stahování programu akcí.","error");
-				this.events = [];
+				this.toastService.toast("Nastala chyba při stahování akce.","error");
+				this.event = null;
 			});
 	}
-
-	getEventLink(event){
-		return ['/akce',event.url ? event.url : event._id];
-	}
-
+	
 	getRSVP(event){
 		if(!event.rsvp) event.rsvp = [];
 		return event.rsvp.some(user => user._id == this.user._id);

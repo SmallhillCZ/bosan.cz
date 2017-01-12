@@ -1,29 +1,13 @@
 module.exports = {
 	
-	"profile": {
+	"events": {
 		"read": true,
+		"list": true,
+		"readRSVP": true,
+		"writeRSVP": true
+	},
+
+	"users":{
 		"list": true
-	},
-	
-	"entity": {
-		"read": true
-	},
-	
-	"budget": {
-		"read": true
-	},
-	
-	"expenditures": {
-		"read": true
-	},
-	
-	"user": {
-		"login": true
-	},
-	
-	"edesky": {
-		"read": true,
-		"list": false
 	}
-	
 };

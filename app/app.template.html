@@ -1,31 +1,41 @@
-<div id="toasts">
-	<ul>
-		<li *ngFor="let toast of toasts" [class]="toast.status" (click)="toast.hide()">
-			<span *ngIf="toast.opacity" [style.opacity]="toast.opacity">
-					<i class="fa fa-circle-o-notch fa-spin"></i> {{toast.text}}
-			</span>
-		</li>
-	</ul>
-</div>
 
-<router-outlet></router-outlet>
+
+
+
+<div class="container">
+
+	<h1>bosan.cz</h1>
+
+	<div class="row">
+
+		<div class="col-md-2">
+			<nav>
+				<ul class="nav nav-pills nav-stacked">
+					<li><a routerLink="/">Novinky</a></li>
+					<li routerLinkActive="active"><a routerLink="/stranka/o-nas">O nás</a></li>
+					<li routerLinkActive="active"><a routerLink="/akce">Akce</a></li>
+					<li><a>Tábor</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="col-md-10">
+			<router-outlet></router-outlet>
+		</div>
+
+	</div>
+
+</div>
 
 <footer>
 	<div class="container text-muted small">
 		<div class="col-sm-4 col-xs-12">
-			Vyvinuto s <i class="fa fa-heart" aria-hidden="true"></i> <a>členy komunity otevřených dat</a> {{year}}
 		</div>
 		<div class="col-sm-4 col-xs-12 text-center">
-			<a>
+			<a href="https://facebook.com/bosan.cz">
 				<span class="fa-stack fa-lg">
 					<i class="fa fa-circle fa-stack-2x"></i>
 					<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-				</span>
-			</a>
-			<a>
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-circle fa-stack-2x"></i>
-					<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
 				</span>
 			</a>
 			<a href="https://github.com/SmallhillCZ/bosan-cz">
@@ -39,3 +49,13 @@
 		</div>
 	</div>
 </footer>
+
+<div id="toasts">
+	<ul>
+		<li *ngFor="let toast of toasts" [class]="toast.status" (click)="toast.hide()">
+			<span *ngIf="toast.opacity" [style.opacity]="toast.opacity">
+				{{toast.text}}
+			</span>
+		</li>
+	</ul>
+</div>

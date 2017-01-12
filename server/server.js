@@ -12,9 +12,9 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/bosan-cz');
 mongoose.Promise = global.Promise;
 
-app.use("/api",require("./routers/api.js"));
+app.use("/api",require("./api/index"));
 
-app.use(require("./routers/static"));
+app.use(require("./static"));
 
 app.get('*',(req,res) => {
 	res.sendFile("aot/index.html", { root: __dirname + "/.." });	

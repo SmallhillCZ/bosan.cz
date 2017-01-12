@@ -7,6 +7,8 @@ import { AppComponent }  from './app.component';
 
 // Views components
 import { FrontPageComponent }  from './views/front-page/front-page.component';
+import { EventDetailComponent }  from './views/event-detail/event-detail.component';
+import { PageViewComponent }  from './views/page-view/page-view.component';
 
 // Services
 import { DataService } 		from './services/data.service';
@@ -36,12 +38,11 @@ export function getAuthHttp(http) {
 		HttpModule,
 		FormsModule,
 		routing,
-		//Ng2BootstrapModule,
-		FileUploadModule
+		//FileUploadModule
 	],
   declarations: [
-		AppComponent,
-		/* VIEWS */ FrontPageComponent,
+		AppComponent, 
+		/* VIEWS */ FrontPageComponent, EventDetailComponent, PageViewComponent, 
 		/* Shared Components */
 		/* PIPES */ MoneyPipe
 	],

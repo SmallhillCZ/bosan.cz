@@ -2,29 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { JwtHelper } from 'angular2-jwt';
 
-
-/**
-	* User object to save data concerning current (or other) user
-	*/
-export class User {
-
-	/** 
-		* user's indentification 
-		*/
-	public login: string;
-
-	/**
-		* list of all the entities user has rights to manage
-		*/
-	public managedProfiles: Array<string> = [];
-	
-	/**
-		* list of all the roles user has
-		*/
-	public roles: Array<string>;
-
-}
-
 /**
 	* Service to save user information and commnicate user data with server
 	*/
@@ -38,12 +15,17 @@ export class UserService {
 	/**
 		* current user
 		*/
-	user: User = new User;
+	user: any;
 
 	token: String = null;
 
 	constructor(private http: Http){
-		this.refreshState();
+		this.user = {
+			"_id": "58773d714cd9b90495d2adb9",
+			"login": "kopec",
+			"name": "Kopec"
+		};
+		//this.refreshState();
 	}
 
 	saveToken(token){
@@ -67,7 +49,7 @@ export class UserService {
 			this.user = this.jwtHelper.decodeToken(token);
 			this.logged = true;
 		}	else {
-			this.user = new User;
+			this.user = null;
 			this.logged = false;
 		}
 	}

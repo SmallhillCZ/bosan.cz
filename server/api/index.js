@@ -4,6 +4,7 @@ var jwt = require('express-jwt');
 
 var router = module.exports = express.Router();
 
+/* JSON Web Token Authentication */
 var jwtOptions = {
 	secret: "kaj;aliuew ;932fjadkjfp9832jf;dlkj",
 	credentialsRequired: false
@@ -16,7 +17,11 @@ router.use(function (err, req, res, next) {
 		res.send("Unauthorized" + (err.message ? ": " + err.message : ""));
   }
 });
-					 
-router.get("/", (req,res) => res.sendFile("index.html", { root: __dirname + "/../api" }));
+				
+/* API routes */
+router.use("/events", require("./events"));
 
+router.use("/users", require("./users"));
+
+/* IF no route matches */
 router.get("*", (req,res) => res.sendStatus(404));

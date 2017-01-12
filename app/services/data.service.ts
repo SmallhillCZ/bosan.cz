@@ -21,58 +21,16 @@ export class DataService {
 	
 	constructor(private http: Http, private authHttp: AuthHttp) {}
 
-	/* ENTITIES */
-	getEntities() {
-			return this.http.get("/api/entities").toPromise().then(response => response.json());
-	}
-
-	getEntity(id) { 
-		return this.http.get("/api/entities/" + id).toPromise().then(response => response.json());
+	/* EVENTS */
+	getEvents() {
+			return this.http.get("/api/events").toPromise().then(response => response.json());
 	}
 	
-	/* PROFILES */
-	getProfiles() {
-			return this.http.get("/api/profiles").toPromise().then(response => response.json());
-	}
-
-	getProfile(id) {
-		return this.http.get("/api/profiles/" + id).toPromise().then(response => response.json());
+	getEvent(id) {
+			return this.http.get("/api/events/" + id).toPromise().then(response => response.json());
 	}
 	
-	saveProfile(profile){
-		return this.authHttp.post("/api/profiles/" + profile._id,profile).toPromise().then(response => response.json());
+	setRSVP(id,rsvp){
+		return this.http.post("/api/events/" + id + "/rsvp",rsvp).toPromise().then(response => response.json());
 	}
-
-	/* DASHBOARD */
-	getDashboard(id){
-		return this.http.get("/api/prehled/" + id).toPromise().then(response => response.json());
-	}
-
-	/* EXPENDITURES */
-	getBudget(id,year){
-		if(!year) year = (new Date()).getFullYear();
-		return this.http.get("/api/expenditures/budget/" + id + "/" + year).toPromise().then(response => response.json());
-	}	
-
-	getExpendituresUploader(profileId,year){
-		if(!profileId || !year) return null;
-		var url = "/api/expenditures/import/" + profileId + "/" + year;
-		return new FileUploader({
-			url: url,
-			authToken: "Bearer " + window.localStorage.getItem("id_token")
-		});
-	}
-
-	getExpenditureEvent(profileId,eventId){
-		return this.http.get("/api/expenditures/events/" + eventId).toPromise().then(response => response.json());
-	}
-	
-	getExpenditureEvents(profileId){
-		return this.http.get("/api/expenditures/events" + profileId).toPromise().then(response => response.json());
-	}
-	
-	getNoticeBoardIds(profileId){
-		return this.http.get("/api/uredni-desky/" + profileId + "/ids").toPromise().then(response => response.json());
-	}
-	
 }

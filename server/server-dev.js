@@ -9,9 +9,14 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/bosan-cz');
 mongoose.Promise = global.Promise;
 
-app.use("/api",require("./routers/api.js"));
+var mongo_express = require('mongo-express/lib/middleware');
+var mongo_express_config = require('mongo-express/config');
 
-app.use(require("./routers/static"));
+app.use('/db', mongo_express(mongo_express_config))
+
+app.use("/api",require("./api/index"));
+
+app.use(require("./static"));
 
 app.get('*',(req,res) => {
 	res.sendFile("app/index.html", { root: __dirname + "/.." });	
