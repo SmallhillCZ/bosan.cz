@@ -23,10 +23,10 @@ export class EventListComponent implements OnInit {
 	 
 	page: number = 1;
 	
-	events: {
+	events = {
 		docs: [],
-		pages: number
-	} = {};
+		pages: 0
+	};
 	
 	user: any;
 
@@ -35,11 +35,13 @@ export class EventListComponent implements OnInit {
 	}
 	 
 	 ngOnInit(){
-		 this.loadEvents();
+		 this.loadEvents(1);
 	 }
 
-	 loadEvents(){
+	 loadEvents(page){
 
+		 if(page) this.page = page;
+		 
 		 var loadingToast = this.toastService.toast("Načítám akce...","notice");
 		 
 		 var params: any = {limit:this.limit,sort:this.sort,page:this.page};
@@ -53,7 +55,10 @@ export class EventListComponent implements OnInit {
 			 .catch(err => {
 				 loadingToast.hide();
 				 this.toastService.toast("Nastala chyba při stahování programu akcí.","error");
-				 this.events = {};
+				 this.events = {
+					 docs: [],
+					 pages: 0,
+				 };
 			 });
 	 }
 	 

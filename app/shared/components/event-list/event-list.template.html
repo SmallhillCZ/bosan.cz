@@ -12,8 +12,8 @@
 	
 	<nav >
 		<ul class="pager">
-			<li class="previous" [class.disabled]="page==1"><a (click)="openPage(page > 1 ? page - 1 : 1)"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
-			<li class="next" [class.disabled]="page==events.pages"><a (click)="openPage(page < events.pages ? page + 1 : 1)">Další <span aria-hidden="true">&rarr;</span></a></li>
+			<li class="previous" [class.disabled]="page==1"><a (click)="loadEvents(page > 1 ? page - 1 : 1)"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
+			<li class="next" [class.disabled]="page==events.pages"><a (click)="loadEvents(page < events.pages ? page + 1 : 1)">Další <span aria-hidden="true">&rarr;</span></a></li>
 		</ul>
 	</nav>
 </div>
