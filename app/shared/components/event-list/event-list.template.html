@@ -1,0 +1,19 @@
+<div class="events">
+	<div *ngFor="let event of events.docs" class="event">
+		<h3>{{event.name}}</h3>
+		<p>Od: {{event.from | date:'EEE d. M. y'}}, Do: {{event.till | date:'EEE d. M. y'}}</p>
+		<p>{{event.description}}</p>
+		<p>
+			<a [routerLink]="getEventLink(event)">Detail akce</a>
+			<br>
+			<a [class.na]="!getRSVP(event)" (click)="setRSVP(event,true)">Zúčastním se</a> | <a [class.na]="getRSVP(event)" (click)="setRSVP(event,false)">Nezúčastním se</a>
+		</p>
+	</div>
+	
+	<nav >
+		<ul class="pager">
+			<li class="previous" [class.disabled]="page==1"><a (click)="openPage(page > 1 ? page - 1 : 1)"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
+			<li class="next" [class.disabled]="page==events.pages"><a (click)="openPage(page < events.pages ? page + 1 : 1)">Další <span aria-hidden="true">&rarr;</span></a></li>
+		</ul>
+	</nav>
+</div>

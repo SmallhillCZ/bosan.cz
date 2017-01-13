@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/bosan-cz');
 mongoose.Promise = global.Promise;
+mongoose.plugin(require("mongoose-paginate"));
 
 app.use("/api",require("./api/index"));
 

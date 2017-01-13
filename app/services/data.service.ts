@@ -7,6 +7,10 @@ import { FileUploader } from 'ng2-file-upload/file-upload/file-uploader.class';
 
 import 'rxjs/add/operator/toPromise';
 
+function toParams(options){
+	return Object.keys(options).map(item => item + "=" + options[item]).join("&");
+}
+
 /**
 	* Service to communicate with server database
 	* getEntities - returns Promise with the list of entities, possibly filtered by filter:object parameter
@@ -18,12 +22,12 @@ import 'rxjs/add/operator/toPromise';
 	**/
 @Injectable()
 export class DataService {
-	
+
 	constructor(private http: Http, private authHttp: AuthHttp) {}
 
 	/* EVENTS */
-	getEvents() {
-			return this.http.get("/api/events").toPromise().then(response => response.json());
+	getEvents(options) {
+			return this.http.get("/api/events?" + toParams(options)).toPromise().then(response => response.json());
 	}
 	
 	getEvent(id) {

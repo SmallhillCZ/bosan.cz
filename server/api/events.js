@@ -10,17 +10,26 @@ var Event = require("../models/event");
 /* LIST ALL EVENTS */
 router.get("/", acl("events","list"), (req,res) => {
 	
+	var query = {};
+	
+	var options = {
+		select: "_id name url description from till"
+	};
+	
 	// we want to display RSVP only to certain users
-	var rsvp = acl_check("events","readRSVP",req);
+	if(acl_check("events","readRSVP",req)){
+		options.select = options.select + " rsvp"; 
+		options.populate = {path: "rsvp",select:"name"};
+	}
 	
-	var select = "_id name url description from till";
-	if(rsvp) select = select + " rsvp"; // we want to display RSVP only to certain users
+	if(req.query.from) query.till = {$gt: new Date(req.query.from)};
+	if(req.query.till) query.from = {$lt: new Date(req.query.till)};
 	
-	var events = Event.find({},select);
-	
-	if(rsvp) events.populate("rsvp","name"); // we want to display RSVP only to certain users
-	
-	events
+	if(req.query.sort) options.sort = {"from": req.query.sort === "desc" ? -1 : 1};
+	if(req.query.limit) options.limit = Number(req.query.limit);
+	if(req.query.page) options.page = Number(req.query.page);
+
+	Event.paginate(query,options)
 		.then(events => res.json(events))
 		.catch(err => res.sendStatus(500));
 	

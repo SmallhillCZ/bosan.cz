@@ -11,6 +11,7 @@ mongoose.Promise = global.Promise;
 
 var mongo_express = require('mongo-express/lib/middleware');
 var mongo_express_config = require('mongo-express/config');
+mongoose.plugin(require("mongoose-paginate"));
 
 app.use('/db', mongo_express(mongo_express_config))
 

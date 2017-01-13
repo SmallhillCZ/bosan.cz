@@ -12,59 +12,9 @@ import { UserService } from '../../services/user.service';
 })
 export class FrontPageComponent {
 	
-	events: any[] = [];
+	listFrom: Date = new Date();
 
-	user: any;
-
-	constructor(private dataService: DataService, private toastService: ToastService, private userService: UserService) {
-		this.user = this.userService.user;
-		
-		this.loadEvents();
-	}
-
-	loadEvents(){
-		
-		var loadingToast = this.toastService.toast("Načítám akce...","notice");
-		
-		this.dataService.getEvents()
-			.then(events => {
-				loadingToast.hide();
-				this.events = events;
-			})
-			.catch(err => {
-				loadingToast.hide();
-				this.toastService.toast("Nastala chyba při stahování programu akcí.","error");
-				this.events = [];
-			});
-	}
-
-	getEventLink(event){
-		return ['/akce',event.url ? event.url : event._id];
-	}
-
-	getRSVP(event){
-		if(!event.rsvp) event.rsvp = [];
-		return event.rsvp.some(user => user._id == this.user._id);
-	}
-
-	setRSVP(event,attending){
-		
-		if(this.getRSVP(event) === attending) return;
-		
-		var oldRSVP = JSON.parse(JSON.stringify(event.rsvp));
-		
-		event.rsvp = event.rsvp.filter(item => item._id != this.user._id);
-		if(attending) event.rsvp.push(this.user);
-		
-		this.dataService.setRSVP(event._id,{"id": this.user._id,"attending": attending})
-			.then(rsvp => {
-				event.rsvp = rsvp;
-				this.toastService.toast("Uloženo.","warning");
-			})
-			.catch(err => {
-				event.rsvp = oldRSVP;			
-				this.toastService.toast("Nepodařilo se uložit účast na akci.","error");
-			});
+	constructor(private dataService: DataService, private toastService: ToastService, private userService: UserService) {		
 	}
 
 }

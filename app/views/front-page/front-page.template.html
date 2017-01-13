@@ -4,16 +4,12 @@
 <p>Jezdíme na devítikanoích vlastní výroby, kajacích i singlovkách. Chceš to zkusit? Pak si s sebou vezmi věci na první schůzku a přijď v pondělí nebo ve středu od 16 hodin do loděnice. Nebo se dopředu dohodni s některým z vedoucích.</p>
 <p>Pro školní kolektivy a družiny nabízíme zdarma projížďky po Vltavě. Bližší informace najdete v části o nás.</p>
 
-<div class="events">
-	<h2>Nejbližší akce:</h2>
-	<div *ngFor="let event of events" class="event">
-		<h3>{{event.name}}</h3>
-		<p>Od: {{event.from | date:'EEE d. M. y'}}, Do: {{event.till | date:'EEE d. M. y'}}</p>
-		<p>{{event.description}}</p>
-		<p>
-			<a [routerLink]="getEventLink(event)">Detail akce</a>
-			<br>
-			<a [class.na]="!getRSVP(event)" (click)="setRSVP(event,true)">Zúčastním se</a> | <a [class.na]="getRSVP(event)" (click)="setRSVP(event,false)">Nezúčastním se</a>
-		</p>
+<div class="row">
+	<div class="col-md-6">
+		<h3>Nejbližší akce</h3>
+		<event-list limit="5" sort="asc" [from]="listFrom"></event-list>
+	</div>
+	<div class="col-md-6">
+		<h3>Novinky</h3>
 	</div>
 </div>

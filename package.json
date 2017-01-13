@@ -42,6 +42,7 @@
     "jsonwebtoken": "^7.2.1",
     "mongodb": "^2.2.19",
     "mongoose": "^4.6.6",
+    "mongoose-paginate": "^5.0.3",
     "multer": "^1.2.0",
     "ng2-bootstrap": "^1.1.16",
     "ng2-file-upload": "^1.1.4-2",
