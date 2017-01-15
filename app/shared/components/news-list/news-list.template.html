@@ -1,0 +1,14 @@
+<div *ngIf="news" class="news">
+	<div *ngFor="let newsItem of news.docs" class="newsItem">
+		<h3>{{newsItem.title}}</h3>
+		<p class="info">{{newsItem.date | date:'EEE d. M. y'}}, přidal {{newsItem.creator.name}}</p>
+		<p>{{newsItem.text}}</p>
+	</div>
+	
+	<nav *ngIf="events">
+		<ul class="pager">
+			<li class="previous" [class.disabled]="page==1"><a (click)="loadNews(page - 1)"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
+			<li class="next" [class.disabled]="page==news.pages"><a (click)="loadNews(page + 1)">Další <span aria-hidden="true">&rarr;</span></a></li>
+		</ul>
+	</nav>
+</div>

@@ -23,10 +23,7 @@ export class EventListComponent implements OnInit {
 	 
 	page: number = 1;
 	
-	events = {
-		docs: [],
-		pages: 0
-	};
+	events;
 	
 	user: any;
 
@@ -40,7 +37,14 @@ export class EventListComponent implements OnInit {
 
 	 loadEvents(page){
 
-		 if(page) this.page = page;
+		 if(page < 1) page = 1;
+
+		 if(this.events){
+			 if(page > this.events.pages) page = this.events.pages;
+			 if(page == this.page) return;
+		 }
+
+		 this.page = page;
 		 
 		 var loadingToast = this.toastService.toast("Načítám akce...","notice");
 		 
@@ -55,10 +59,7 @@ export class EventListComponent implements OnInit {
 			 .catch(err => {
 				 loadingToast.hide();
 				 this.toastService.toast("Nastala chyba při stahování programu akcí.","error");
-				 this.events = {
-					 docs: [],
-					 pages: 0,
-				 };
+				 this.events = null;
 			 });
 	 }
 	 

@@ -21,6 +21,8 @@ router.use(function (err, req, res, next) {
 /* API routes */
 router.use("/events", require("./events"));
 
+router.use("/news", require("./news"));
+
 router.use("/users", require("./users"));
 
 /* IF no route matches */

@@ -7,7 +7,11 @@ module.exports = {
 		"writeRSVP": true
 	},
 
-	"users":{
+	"users": {
 		"list": true
+	},
+	
+	"news": {
+		"list": true	
 	}
 };

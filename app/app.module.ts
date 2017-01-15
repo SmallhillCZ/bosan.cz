@@ -22,6 +22,7 @@ import { UserService } 		from './services/user.service';
 
 // Shared coremponents
 import { EventListComponent }  from './shared/components/event-list/event-list.component';
+import { NewsListComponent }  from './shared/components/news-list/news-list.component';
 
 // Pipes
 import { MoneyPipe } from './shared/pipes/money.pipe';
@@ -46,7 +47,7 @@ export function getAuthHttp(http) {
   declarations: [
 		AppComponent, 
 		/* VIEWS */ FrontPageComponent, EventDetailComponent, EventsOverviewComponent, PageViewComponent, 
-		/* Shared Components */ EventListComponent,
+		/* Shared Components */ EventListComponent, NewsListComponent, 
 		/* PIPES */ MoneyPipe
 	],
 	providers: [
