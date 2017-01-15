@@ -26,15 +26,15 @@ export class EventDetailComponent {
 
 	loadEvent(id){
 		
-		var loadingToast = this.toastService.toast("Načítám akci...","notice");
+		this.toastService.loading(true);
 		
 		this.dataService.getEvent(id)
 			.then(event => {
-				loadingToast.hide();
+				this.toastService.loading(false);
 				this.event = event;
 			})
 			.catch(err => {
-				loadingToast.hide();
+				this.toastService.loading(false);
 				this.toastService.toast("Nastala chyba při stahování akce.","error");
 				this.event = null;
 			});

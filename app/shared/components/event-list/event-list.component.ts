@@ -46,18 +46,18 @@ export class EventListComponent implements OnInit {
 
 		 this.page = page;
 		 
-		 var loadingToast = this.toastService.toast("Načítám akce...","notice");
+		 this.toastService.loading(true);
 		 
 		 var params: any = {limit:this.limit,sort:this.sort,page:this.page};
 		 if(this.from) params.from = this.from;
 
 		 this.dataService.getEvents(params)
 			 .then(events => {
-				 loadingToast.hide();
+				 this.toastService.loading(false);
 				 this.events = events;
 			 })
 			 .catch(err => {
-				 loadingToast.hide();
+				 this.toastService.loading(false);
 				 this.toastService.toast("Nastala chyba při stahování programu akcí.","error");
 				 this.events = null;
 			 });

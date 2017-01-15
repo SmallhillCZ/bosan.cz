@@ -40,6 +40,15 @@ export class ToastService {
 		*/
 	toasts: Array<ToastItem> = [];
 
+	loadingToast: ToastItem;
+	loadingCount: number = 0;
+
+	constructor(){
+		this.loadingToast = new ToastItem("Načítám...","loading",true);
+		this.toasts.push(this.loadingToast);
+		this.loadingToast.hide();
+	}
+
 	/**
 		* text:string - text of toast
 		* status:string - status type of toast, translates possibly to class
@@ -51,6 +60,12 @@ export class ToastService {
 		return toast;
 	}
 
-
+	loading(isLoading: boolean){
+		if(isLoading) this.loadingCount++;
+		else this.loadingCount = Math.max(0,this.loadingCount - 1);
+		
+		if(this.loadingCount > 0) this.loadingToast.show();
+		else this.loadingToast.hide();
+	}
 
 }

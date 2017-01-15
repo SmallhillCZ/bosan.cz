@@ -49,7 +49,7 @@ export class NewsListComponent implements OnInit {
 
 		 this.page = page;
 
-		 var loadingToast = this.toastService.toast("Načítám...","loading");
+		 this.toastService.loading(true);
 
 		 var params: any = {limit:this.limit,sort:this.sort,page:this.page};
 		 if(this.from) params.from = this.from;
@@ -57,11 +57,11 @@ export class NewsListComponent implements OnInit {
 
 		 this.dataService.getNews(params)
 			 .then(news => {
-				 loadingToast.hide();
+				 this.toastService.loading(false);
 				 this.news = news;
 			 })
 			 .catch(err => {
-				 loadingToast.hide();
+				 this.toastService.loading(false);
 				 this.toastService.toast("Nastala chyba při stahování novinek","error");
 				 this.news = null;
 			 });

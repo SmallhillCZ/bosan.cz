@@ -25,17 +25,17 @@ export class PageViewComponent implements OnInit {
 	
 	ngOnInit(){
 		
-		var loadingToast = this.toastService.toast("Načítám stránku...","notice");
+		this.toastService.loading(true);
 		
 		this.route.params.forEach((params: Params) => {
 			this.pageId = params["id"];
 			this.getPageContent(this.pageId)
 				.then(res => {
-					loadingToast.hide();
+					this.toastService.loading(false);
 					this.pageContent = res.text();
 				})
 				.catch(err => {
-					loadingToast.hide();
+					this.toastService.loading(false);
 					this.toastService.toast("Chyba při načítání stránky","error");
 				});
 		});
