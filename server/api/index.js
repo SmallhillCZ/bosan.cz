@@ -25,5 +25,7 @@ router.use("/news", require("./news"));
 
 router.use("/users", require("./users"));
 
+router.use("/members", require("./members"));
+
 /* IF no route matches */
 router.get("*", (req,res) => res.sendStatus(404));

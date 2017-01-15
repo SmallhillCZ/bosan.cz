@@ -1,0 +1,28 @@
+<h2>Členská databáze</h2>
+
+<table *ngIf="members" class="table table-striped table-condensed table-hover table-responsive">
+	<thead>
+		<tr>
+			<th>Oddíl</th>
+			<th>Přezdívka</th>
+			<th>Jméno</th>
+			<th>Příjmení</th>
+			<th></th>
+		</tr>
+		<tr class="filter">
+			<td><input type="text" name="filter-squad" [(ngModel)]="filter.squad" placeholder="filtr..."></td>
+			<td><input type="text" name="filter-nickname" [(ngModel)]="filter.nickname" placeholder="filtr..."></td>
+			<td><input type="text" name="filter-firstname" [(ngModel)]="filter.firstname" placeholder="filtr..."></td>
+			<td><input type="text" name="filter-lastname" [(ngModel)]="filter.lastname" placeholder="filtr..."></td>
+			<td></td>
+	</thead>
+	<tbody>
+		<tr *ngFor="let member of getList()" [class]="'oddil-' + member.squad">
+			<td class="oddil">{{member.squad}}</td>
+			<td>{{member.nickname}}</td>
+			<td>{{member.name?.first}}</td>
+			<td>{{member.name?.last}}</td>
+			<td><a [routerLink]="[member._id]">otevřít</a></td>
+		</tr>
+	</tbody>
+</table>

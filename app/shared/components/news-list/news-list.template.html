@@ -5,7 +5,7 @@
 		<p>{{newsItem.text}}</p>
 	</div>
 	
-	<nav *ngIf="events">
+	<nav *ngIf="news">
 		<ul class="pager">
 			<li class="previous" [class.disabled]="page==1"><a (click)="loadNews(page - 1)"><span aria-hidden="true">&larr;</span> Předchozí</a></li>
 			<li class="next" [class.disabled]="page==news.pages"><a (click)="loadNews(page + 1)">Další <span aria-hidden="true">&rarr;</span></a></li>

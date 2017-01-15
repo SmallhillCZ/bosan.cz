@@ -13,5 +13,9 @@ module.exports = {
 	
 	"news": {
 		"list": true	
+	},
+	
+	"members": {
+		"list": true
 	}
 };

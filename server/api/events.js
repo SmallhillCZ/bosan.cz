@@ -66,17 +66,32 @@ router.get("/:id/rsvp", acl("events","read"), (req,res) => {
 	
 });
 
-router.post("/:id/rsvp", acl("events","writeRSVP"), (req,res) => {
-	
-	if(!req.body.id) return res.status(400).send("Missing parameter id.");
-	if(typeof req.body.attending == "undefined") return res.status(400).send("Missing parameter attending.");
+router.put("/:id/rsvp/:userId", acl("events","writeRSVP"), (req,res) => {
 	
 	Event.findOne({_id:req.params.id})
 		.then(event => {
 			if(!event) return res.sendStatus(404);
 		
-			event.rsvp = event.rsvp.filter(item => item != req.body.id);
-			if(req.body.attending == true) event.rsvp.push(req.body.id);
+			if(!event.rsvp.some(item => item == req.params.userId)) event.rsvp.push(req.params.userId);
+		
+			event.save()
+				.then(event => {
+					Event.populate(event, {path:"rsvp"}).then(event => res.json(event.rsvp));
+				})
+				.catch(err => res.sendStatus(500));
+				
+		})
+		.catch(err => res.sendStatus(500));
+	
+});
+
+router.delete("/:id/rsvp/:userId", acl("events","writeRSVP"), (req,res) => {
+	
+	Event.findOne({_id:req.params.id})
+		.then(event => {
+			if(!event) return res.sendStatus(404);
+		
+			event.rsvp = event.rsvp.filter(item => item != req.params.userId);
 		
 			event.save()
 				.then(event => {

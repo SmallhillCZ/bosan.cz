@@ -1,6 +1,5 @@
 // load roles from separate files 
 var aclRoles = {};
-aclRoles["admin"] = require("./acl/admin");
 aclRoles["guest"] = require("./acl/guest");
 
 // function to evaluate single permission

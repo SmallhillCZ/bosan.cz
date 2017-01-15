@@ -26,7 +26,7 @@ export class DataService {
 	constructor(private http: Http, private authHttp: AuthHttp) {}
 
 	/* EVENTS */
-	getEvents(options) {
+	getEvents(options?) {
 			return this.http.get("/api/events" + (options ? "?" + toParams(options) : "")).toPromise().then(response => response.json());
 	}
 	
@@ -34,11 +34,16 @@ export class DataService {
 			return this.http.get("/api/events/" + id).toPromise().then(response => response.json());
 	}
 	
-	setRSVP(id,rsvp){
-		return this.http.post("/api/events/" + id + "/rsvp",rsvp).toPromise().then(response => response.json());
+	setRSVP(eventId,userId,attending){
+		if(attending === false) return this.http.delete("/api/events/" + eventId + "/rsvp/" + userId).toPromise().then(response => response.json());
+		else return this.http.put("/api/events/" + eventId + "/rsvp/" + userId,{}).toPromise().then(response => response.json());
 	}
 	
-	getNews(options) {
+	getNews(options?) {
 			return this.http.get("/api/news" + (options ? "?" + toParams(options) : "")).toPromise().then(response => response.json());
+	}
+	
+	getMembers(options?){
+		return this.http.get("/api/members" + (options ? "?" + toParams(options) : "")).toPromise().then(response => response.json());
 	}
 }

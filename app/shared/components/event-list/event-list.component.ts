@@ -81,7 +81,7 @@ export class EventListComponent implements OnInit {
 		event.rsvp = event.rsvp.filter(item => item._id != this.user._id);
 		if(attending) event.rsvp.push(this.user);
 		
-		this.dataService.setRSVP(event._id,{"id": this.user._id,"attending": attending})
+		this.dataService.setRSVP(event._id,this.user._id,attending)
 			.then(rsvp => {
 				event.rsvp = rsvp;
 				this.toastService.toast("Uloženo.","warning");

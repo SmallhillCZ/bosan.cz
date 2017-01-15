@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 
-// Views components
+// Views components - public
 import { FrontPageComponent }  from './views/front-page/front-page.component';
 import { EventDetailComponent }  from './views/event-detail/event-detail.component';
 import { EventsOverviewComponent }  from './views/events-overview/events-overview.component';
 import { PageViewComponent }  from './views/page-view/page-view.component';
 
+// Views components - internal
+import { MembersListComponent }  from './views/members-list/members-list.component';
 
 // Services
 import { DataService } 		from './services/data.service';
@@ -41,12 +43,13 @@ export function getAuthHttp(http) {
 		BrowserModule,
 		HttpModule,
 		FormsModule,
-		routing,
+		routing
 		//FileUploadModule
 	],
   declarations: [
 		AppComponent, 
-		/* VIEWS */ FrontPageComponent, EventDetailComponent, EventsOverviewComponent, PageViewComponent, 
+		/* VIEWS - public */ FrontPageComponent, EventDetailComponent, EventsOverviewComponent, PageViewComponent, 
+		/* VIEWS - internal */ MembersListComponent, 
 		/* Shared Components */ EventListComponent, NewsListComponent, 
 		/* PIPES */ MoneyPipe
 	],
