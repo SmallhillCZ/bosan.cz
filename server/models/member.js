@@ -9,6 +9,8 @@ var memberSchema = mongoose.Schema({
 	
 	"nickname": String,
 	"squad": String,
+	"role": String,
+	"rank": String,
 	
 	"address": {
 		"street": String,

@@ -13,6 +13,7 @@ import { PageViewComponent }  from './views/page-view/page-view.component';
 
 // Views components - internal
 import { MembersListComponent }  from './views/members-list/members-list.component';
+import { MemberDetailComponent }  from './views/member-detail/member-detail.component';
 
 // Services
 import { DataService } 		from './services/data.service';
@@ -49,7 +50,7 @@ export function getAuthHttp(http) {
   declarations: [
 		AppComponent, 
 		/* VIEWS - public */ FrontPageComponent, EventDetailComponent, EventsOverviewComponent, PageViewComponent, 
-		/* VIEWS - internal */ MembersListComponent, 
+		/* VIEWS - internal */ MembersListComponent, MemberDetailComponent, 
 		/* Shared Components */ EventListComponent, NewsListComponent, 
 		/* PIPES */ MoneyPipe
 	],

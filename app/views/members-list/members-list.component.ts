@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DataService } from '../../services/data.service';
 import { ToastService } from '../../services/toast.service';
@@ -16,11 +17,13 @@ export class MembersListComponent implements OnInit{
 	filter = {
 		squad: null,
 		nickname: null,
+		role: null,
+		rank: null,
 		firstname: null,
 		lastname: null
 	};
 
-	constructor(private dataService: DataService, private toastService: ToastService) {
+	constructor(private dataService: DataService, private toastService: ToastService, private router: Router) {
 	}
 	
 	ngOnInit(){
@@ -51,6 +54,8 @@ export class MembersListComponent implements OnInit{
 			var matched = {
 				squad: member.squad,
 				nickname: member.nickname,
+				role: member.role,
+				rank: member.rank,
 				firstname: member.name ? member.name.first : null,
 				lastname: member.name ? member.name.last : null
 			}
@@ -61,6 +66,10 @@ export class MembersListComponent implements OnInit{
 				return (-1 !== matched[key].toLowerCase().search(this.filter[key].toLowerCase()));
 			});
 		});
+	}
+	
+	openMember(member){
+		this.router.navigate(['/clenove',member._id]);
 	}
 
 }

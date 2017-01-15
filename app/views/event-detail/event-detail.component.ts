@@ -15,6 +15,8 @@ export class EventDetailComponent {
 	
 	event;
 	
+	view = "detail";
+	
 	user: any;
 
 	constructor(private dataService: DataService, private toastService: ToastService, private userService: UserService, private route: ActivatedRoute) {

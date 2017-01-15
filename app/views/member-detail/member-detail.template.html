@@ -1,0 +1,76 @@
+<h2>{{member?.name?.first}} {{member?.name?.last}} ({{member?.nickname || "bez přezdívky"}})</h2>
+
+<a (click)="editmode=true">upravit</a>
+
+<table *ngIf="member" class="table">
+	<tbody>
+		<tr>
+			<th>Přezdívka</th>
+			<td>
+				<input *ngIf="editmode" type="text" name="nickname" [(ngModel)]="member.nickname">
+				<span *ngIf="!editmode">{{member.nickname}}</span>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>Jméno</th>
+			<td>
+				<input *ngIf="editmode" type="text" name="name-first" [(ngModel)]="member.name.first">
+				<span *ngIf="!editmode">{{member.name.first}}</span>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>Příjmení</th>
+			<td>
+				<input *ngIf="editmode" type="text" name="name-last" [(ngModel)]="member.name.last">
+				<span *ngIf="!editmode">{{member.name.last}}</span>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>Funkce</th>
+			<td>
+				<select *ngIf="editmode" name="role" [(ngModel)]="member.role">
+					<option>dítě</option>
+					<option>instruktor</option>
+					<option>vedoucí</option>
+				</select>
+				<span *ngIf="!editmode">{{member.role}}</span>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>Hodnost</th>
+			<td>
+				<select *ngIf="editmode" name="rank" [(ngModel)]="member.rank">
+					<option>nic</option>
+					<option>člunař</option>
+					<option>kormidelník</option>
+					<option>lodivod</option>
+				</select>
+				<span *ngIf="!editmode">{{member.rank}}</span>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>Adresa</th>
+			<td>
+				<span  *ngIf="editmode">
+					<input type="text" name="address-street" [(ngModel)]="member.address.street" placeholder="Ulice"> <input type="text" name="address-streetNo" [(ngModel)]="member.address.streetNo" placeholder="č. p."><br>
+					<input type="text" name="address-city" [(ngModel)]="member.address.city" placeholder="Město"><br>
+					<input type="text" name="address-zip" [(ngModel)]="member.address.zip" placeholder="PSČ">
+				</span>
+				<span *ngIf="!editmode">
+					{{member.address.street}} {{member.address.streetNo}}<br>
+					{{member.address.city}}<br>
+					{{member.address.zip}}
+				</span>
+			</td>
+		</tr>
+		
+	</tbody>
+</table>
+
+<button *ngIf="editmode" type="button" (click)="editmode=false">Uložit</button>
+				

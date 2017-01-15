@@ -3,20 +3,41 @@
 
 	<p>Od: {{event.from | date:'EEE d. M. y'}}, Do: {{event.till | date:'EEE d. M. y'}}</p>
 
-	<h3>Popis</h3>
-	<p>{{event.description}}</p>
+	<div class="btn-group btn-group-sm" role="group">
+		<button (click)="view='detail'" [class.active]="view=='detail'" type="button" class="btn btn-default">Popis a přihláška</button>
+		<button (click)="view='rsvp'" [class.active]="view=='rsvp'" type="button" class="btn btn-default">Seznam účastníků</button>
+		<button (click)="view='report'" [class.active]="view=='report'" type="button" class="btn btn-default">Kronika</button>
+		<button (click)="view='gallery'" [class.active]="view=='gallery'" type="button" class="btn btn-default">Fotogalerie</button>
+		<button (click)="view='accounting'" [class.active]="view=='accounting'" type="button" class="btn btn-default">Účtování</button>
+	</div>
 
-	<h3>Co s sebou</h3>
-	<p></p>
+	<div [ngSwitch]="view">
+		<div *ngSwitchCase="'detail'">
+			<h3>Popis</h3>
+			<p>{{event.description}}</p>
 
-	<div *ngIf="event.rsvp">
-		<h3>Seznam účastníků:</h3>
-		<p>
-			Moje účast: <a [class.na]="!getRSVP(event)" (click)="setRSVP(event,true)">Zúčastním se</a> | <a [class.na]="getRSVP(event)" (click)="setRSVP(event,false)">Nezúčastním se</a>
-		</p>
+			<h3>Co s sebou</h3>
+			<p></p>
+		</div>
 
-		<ul>
-			<li *ngFor="let user of event.rsvp">{{user.name}}</li>
-		</ul>
+		<div *ngSwitchCase="'rsvp'">
+			<h3>Seznam účastníků:</h3>
+			<p>
+				Moje účast: <a [class.na]="!getRSVP(event)" (click)="setRSVP(event,true)">Zúčastním se</a> | <a [class.na]="getRSVP(event)" (click)="setRSVP(event,false)">Nezúčastním se</a>
+			</p>
+
+			<ul>
+				<li *ngFor="let user of event.rsvp">{{user.name}}</li>
+			</ul>
+		</div>
+		
+		<div *ngSwitchCase="'report'">
+		</div>
+		
+		<div *ngSwitchCase="'gallery'">
+		</div>
+		
+		<div *ngSwitchCase="'accounting'">
+		</div>
 	</div>
 </div>

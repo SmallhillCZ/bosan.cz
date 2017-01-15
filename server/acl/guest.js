@@ -16,6 +16,7 @@ module.exports = {
 	},
 	
 	"members": {
-		"list": true
+		"list": true,
+		"read": true
 	}
 };

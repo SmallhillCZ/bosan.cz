@@ -1,8 +1,11 @@
+.members{width:100%;overflow:auto;min-height:400px;}
+
 thead tr{border-left:5px solid #fff;}
+td,th{white-space:nowrap;}
 
 tr.filter{border-left:5px solid #666;}
 tr.filter td{padding:0;background-color:#666;}
-tr.filter td input{border:none;margin:0;padding:2px 5px;font-size:.8em;background-color:transparent;color:#ccc;}
+tr.filter td input{border:none;outline: none;margin:0;padding:2px 5px;font-size:.8em;background-color:transparent;color:#ccc;}
 
 tbody tr{border-left:5px solid #ccc;}
 tbody tr.oddil-22{border-left-color:#ff0;}

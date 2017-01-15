@@ -5,17 +5,21 @@ import { EventDetailComponent }  from './views/event-detail/event-detail.compone
 import { EventsOverviewComponent }  from './views/events-overview/events-overview.component';
 import { PageViewComponent }  from './views/page-view/page-view.component';
 import { MembersListComponent }  from './views/members-list/members-list.component';
+import { MemberDetailComponent }  from './views/member-detail/member-detail.component';
 
 const appRoutes: Routes = [
 	
   {path: 'novinky',component: FrontPageComponent},
 	
+	{path: 'akce/program',component: EventsOverviewComponent},
 	{path: 'akce/:id',component: EventDetailComponent},
-	{path: 'akce',component: EventsOverviewComponent},
+	{path: 'akce', redirectTo: 'akce/program', pathMatch: 'full'},
 	
 	{path: 'stranka/:id',component: PageViewComponent},
 	
+	{path: 'clenove/:id',component: MemberDetailComponent},
 	{path: 'clenove',component: MembersListComponent},
+	
 	
 	{path: '', redirectTo: 'novinky', pathMatch: 'full'}
 	
