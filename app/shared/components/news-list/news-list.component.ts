@@ -21,6 +21,9 @@ export class NewsListComponent implements OnInit {
 	@Input()
 	from: Date;
 	 
+	@Input()
+	till: Date;
+	 
 	page: number = 1;
 	
 	news;
@@ -50,6 +53,7 @@ export class NewsListComponent implements OnInit {
 
 		 var params: any = {limit:this.limit,sort:this.sort,page:this.page};
 		 if(this.from) params.from = this.from;
+		 if(this.till) params.till = this.till;
 
 		 this.dataService.getNews(params)
 			 .then(news => {

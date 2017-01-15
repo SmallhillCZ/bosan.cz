@@ -27,7 +27,7 @@ export class DataService {
 
 	/* EVENTS */
 	getEvents(options) {
-			return this.http.get("/api/events" + (options ? toParams(options) : "")).toPromise().then(response => response.json());
+			return this.http.get("/api/events" + (options ? "?" + toParams(options) : "")).toPromise().then(response => response.json());
 	}
 	
 	getEvent(id) {
@@ -39,6 +39,6 @@ export class DataService {
 	}
 	
 	getNews(options) {
-			return this.http.get("/api/news" + (options ? toParams(options) : "")).toPromise().then(response => response.json());
+			return this.http.get("/api/news" + (options ? "?" + toParams(options) : "")).toPromise().then(response => response.json());
 	}
 }
