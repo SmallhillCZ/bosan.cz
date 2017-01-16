@@ -18,13 +18,13 @@ if (process.env.VCAP_SERVICES) {
   }
 } else {
   mongo = {
-    db:       'bosan-cz',
+    db:       'db',
     host:     'localhost',
-    password: '',
+    password: 'pass',
     port:     27017,
     ssl:      false,
     url:      'mongodb://localhost:27017/db',
-    username: '',
+    username: 'admin',
   };
 }
 
@@ -90,8 +90,8 @@ module.exports = {
     baseUrl: process.env.ME_CONFIG_SITE_BASEURL || '/',
     cookieKeyName: 'mongo-express',
     cookieSecret:     process.env.ME_CONFIG_SITE_COOKIESECRET   || 'cookiesecret',
-    host:             process.env.VCAP_APP_HOST                 || '',
-    port:             process.env.VCAP_APP_PORT                 || 3000,
+    host:             process.env.VCAP_APP_HOST                 || 'localhost',
+    port:             process.env.VCAP_APP_PORT                 || 8081,
     requestSizeLimit: process.env.ME_CONFIG_REQUEST_SIZE        || '50mb',
     sessionSecret:    process.env.ME_CONFIG_SITE_SESSIONSECRET  || 'sessionsecret',
     sslCert:          process.env.ME_CONFIG_SITE_SSL_CRT_PATH   || '',
@@ -105,8 +105,8 @@ module.exports = {
   useBasicAuth: process.env.ME_CONFIG_BASICAUTH_USERNAME !== '',
 
   basicAuth: {
-    username: process.env.ME_CONFIG_BASICAUTH_USERNAME || 'LOGIN',
-    password: process.env.ME_CONFIG_BASICAUTH_PASSWORD || 'PASSWORD',
+    username: process.env.ME_CONFIG_BASICAUTH_USERNAME || 'admin',
+    password: process.env.ME_CONFIG_BASICAUTH_PASSWORD || 'pass',
   },
 
   options: {
@@ -148,6 +148,9 @@ module.exports = {
 
     //gridFSEnabled: if gridFSEnabled is set to 'true', you will be able to manage uploaded files ( ak. grids, gridFS )
     gridFSEnabled: false,
+
+    // logger: this object will be used to initialize router logger (morgan)
+    logger: {},
   },
 
   // Specify the default keyname that should be picked from a document to display in collections list.
