@@ -105,8 +105,8 @@ module.exports = {
   useBasicAuth: process.env.ME_CONFIG_BASICAUTH_USERNAME !== '',
 
   basicAuth: {
-    username: process.env.ME_CONFIG_BASICAUTH_USERNAME || 'admin',
-    password: process.env.ME_CONFIG_BASICAUTH_PASSWORD || 'clo1t3fe',
+    username: process.env.ME_CONFIG_BASICAUTH_USERNAME || 'LOGIN',
+    password: process.env.ME_CONFIG_BASICAUTH_PASSWORD || 'PASSWORD',
   },
 
   options: {
