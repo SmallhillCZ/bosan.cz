@@ -20,9 +20,11 @@ npm run build
 ```
 
 Nastavení serveru jako služby
+
 ```
 sudo npm install forever-service -g
 forever-service install -c "server/server.js" bosan
+```
 
 Spuštění
 
