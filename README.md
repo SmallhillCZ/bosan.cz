@@ -11,7 +11,7 @@ $ cd bosan-cz
 Instalace npm balíčků potřebných pro běh:
 
 ```
-$ npm run install
+$ npm install
 ```
 
 Kompilace kódu:
@@ -53,7 +53,7 @@ $ cd bosan-cz
 Instalace npm balíčků potřebných pro běh:
 
 ```
-$ npm run install
+$ npm install
 ```
 
 Vytvoření konfigurace pro Mongo-Express prohlížeč databáze:
@@ -62,7 +62,7 @@ Vytvoření konfigurace pro Mongo-Express prohlížeč databáze:
 $ cp server/mongo-config.example.js server/mongo-config.js
 ```
 
-Nyní je potřeba v soubory server/mongo-config.js nastavit databázi a přístupové údaje dle https://github.com/mongo-express/mongo-express.
+Nyní je potřeba v souboru server/mongo-config.js nastavit databázi a přístupové údaje dle https://github.com/mongo-express/mongo-express.
 
 Poté již spustíme testovací server:
 
