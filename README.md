@@ -19,9 +19,24 @@ Kompilace kódu:
 npm run build
 ```
 
-Spuštění serveru (pro opravdu produkční nasazení je vhodné spustit jako službu, např. přes balíček forever-service):
+Nastavení serveru jako služby
 ```
-npm start
+sudo npm install forever-service -g
+forever-service install -c "server/server.js" bosan
+
+Spuštění
+
+```
+sudo service bosan start
+```
+
+### Aktualizace
+
+```
+sudo service bosan stop
+git pull origin master
+npm run build
+sudo service bosan start
 ```
 
 ## Instalace pro vývoj
