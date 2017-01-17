@@ -4,41 +4,41 @@
 
 Stažení zdrojového kódu:
 ```
-git clone https://github.com/SmallhillCZ/bosan-cz
-cd bosan-cz
+$ git clone https://github.com/SmallhillCZ/bosan-cz
+$ cd bosan-cz
 ```
 
 Instalace npm balíčků potřebných pro běh:
 
 ```
-npm run install
+$ npm run install
 ```
 
 Kompilace kódu:
 ```
-npm run build
+$ npm run build
 ```
 
 Nastavení serveru jako služby
 
 ```
-sudo npm install forever-service -g
-forever-service install -c "server/server.js" bosan
+$ sudo npm install forever-service -g
+$ forever-service install -c "server/server.js" bosan
 ```
 
 Spuštění
 
 ```
-sudo service bosan start
+$ sudo service bosan start
 ```
 
 ### Aktualizace
 
 ```
-sudo service bosan stop
-git pull origin master
-npm run build
-sudo service bosan start
+$ sudo service bosan stop
+$ git pull origin master
+$ npm run build
+$ sudo service bosan start
 ```
 
 ## Instalace pro vývoj
@@ -46,20 +46,20 @@ sudo service bosan start
 Stažení zdrojového kódu:
 
 ```
-git clone https://github.com/SmallhillCZ/bosan-cz
-cd bosan-cz
+$ git clone https://github.com/SmallhillCZ/bosan-cz
+$ cd bosan-cz
 ```
 
 Instalace npm balíčků potřebných pro běh:
 
 ```
-npm run install
+$ npm run install
 ```
 
 Vytvoření konfigurace pro Mongo-Express prohlížeč databáze:
 
 ```
-cp server/mongo-config.example.js server/mongo-config.js
+$ cp server/mongo-config.example.js server/mongo-config.js
 ```
 
 Nyní je potřeba v soubory server/mongo-config.js nastavit databázi a přístupové údaje dle https://github.com/mongo-express/mongo-express.
@@ -67,7 +67,7 @@ Nyní je potřeba v soubory server/mongo-config.js nastavit databázi a přístu
 Poté již spustíme testovací server:
 
 ```
-npm run dev
+$ npm run dev
 ```
 
  - Server se při každé úpravě souborů sám zrestartuje a TypeScriptový kód se překompiluje.
