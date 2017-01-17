@@ -1,5 +1,12 @@
 # Web dětské vodácké skupiny ŠÁN
 
+## Prerekvizity
+
+- Git
+- Node.js
+- MongoDB
+- Python
+
 ## Instalace pro produkci
 
 Stažení zdrojového kódu:
