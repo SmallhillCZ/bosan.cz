@@ -50,4 +50,16 @@ export class DataService {
 	getMember(id){
 		return this.http.get("/api/members/" + id).toPromise().then(response => response.json());
 	}
+	
+	getPage(id){
+		return this.http.get("/api/pages/" + id).toPromise().then(response => response.json());
+	}
+	
+	createPage(data){
+		return this.http.post("/api/pages", data).toPromise().then(response => response.json());
+	}
+	
+	savePage(id,data){
+		return this.http.put("/api/pages/" + id, data).toPromise().then(response => response.json());
+	}
 }

@@ -1,1 +1,20 @@
-<div class="page" [innerHTML]="pageContent"></div>
+<div *ngIf="page" class="page">
+
+	
+
+	<div *ngIf="!editMode" class="content" [innerHTML]="page.body"></div>
+
+	<div *ngIf="editMode">
+		<textarea name="body" [(ngModel)]="page.body"></textarea>
+		<button type="button" (click)="pageSave()">Uložit</button>
+	</div>
+	
+	<hr>
+
+	<div class="row">
+		<div class="col-md-6 text-left">{{page.changed | date:'EEE d. M. y'}}</div>
+		<div class="col-md-6 text-right"><a (click)="editMode=true">upravit</a></div>
+		
+	</div>
+	
+</div>

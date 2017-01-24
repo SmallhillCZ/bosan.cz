@@ -18,5 +18,11 @@ module.exports = {
 	"members": {
 		"list": true,
 		"read": true
+	},
+	
+	"pages": {
+		"list": true,
+		"read": true,
+		"write": true
 	}
 };

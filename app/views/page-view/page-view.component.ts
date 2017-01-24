@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Http, HttpModule }     from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 
 import { ToastService } from '../../services/toast.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
 	moduleId: module.id,
@@ -13,14 +12,11 @@ import { ToastService } from '../../services/toast.service';
 })
 export class PageViewComponent implements OnInit {
 	
-	pageId;
-	pageContent;
+	page;
+	
+	editMode: boolean = false;
 
-	constructor(private toastService: ToastService, private route: ActivatedRoute, private http: Http) {
-	}
-
-	getPageContent(id){
-		return this.http.get("/app/pages/" + this.pageId + ".html").toPromise();
+	constructor(private toastService: ToastService, private dataService: DataService, private route: ActivatedRoute) {
 	}
 	
 	ngOnInit(){
@@ -28,18 +24,36 @@ export class PageViewComponent implements OnInit {
 		this.toastService.loading(true);
 		
 		this.route.params.forEach((params: Params) => {
-			this.pageId = params["id"];
-			this.getPageContent(this.pageId)
-				.then(res => {
+			
+			this.dataService.getPage(params["id"])
+				.then(page => {
 					this.toastService.loading(false);
-					this.pageContent = res.text();
+					this.page = page;
 				})
 				.catch(err => {
 					this.toastService.loading(false);
+					this.page = null;
 					this.toastService.toast("Chyba při načítání stránky","error");
 				});
 		});
 	}
-
-
+	
+	pageSave(){
+		
+		// save old page in case of failure
+		var oldPage = JSON.parse(JSON.stringify(this.page));
+		
+		this.editMode = false;
+		
+		this.dataService.savePage(this.page._id,this.page)
+			.then(page => {
+				this.page = page;
+				this.toastService.toast("Uloženo","notice");
+			})
+			.catch(err => {
+				this.page = oldPage;
+				this.toastService.toast("Nastala chyba při ukládání stránky: " + err,"error");
+			});
+		
+	}
 }
