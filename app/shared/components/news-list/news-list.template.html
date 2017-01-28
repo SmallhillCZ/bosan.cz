@@ -1,7 +1,7 @@
 <div *ngIf="news" class="news">
 	<div *ngFor="let newsItem of news.docs" class="newsItem">
 		<h3>{{newsItem.title}}</h3>
-		<p class="info">{{newsItem.date | date:'EEE d. M. y'}}, přidal {{newsItem.creator.name}}</p>
+		<p class="info">{{newsItem.date | date:'EEE d. M. y'}}, přidal {{newsItem.creator?.name || "???"}}</p>
 		<p>{{newsItem.text}}</p>
 	</div>
 	

@@ -10,6 +10,7 @@ import { FrontPageComponent }  from './views/front-page/front-page.component';
 import { EventDetailComponent }  from './views/event-detail/event-detail.component';
 import { EventsOverviewComponent }  from './views/events-overview/events-overview.component';
 import { PageViewComponent }  from './views/page-view/page-view.component';
+import { UserLoginComponent }  from './views/user-login/user-login.component';
 
 // Views components - internal
 import { MembersListComponent }  from './views/members-list/members-list.component';
@@ -49,7 +50,7 @@ export function getAuthHttp(http) {
 	],
   declarations: [
 		AppComponent, 
-		/* VIEWS - public */ FrontPageComponent, EventDetailComponent, EventsOverviewComponent, PageViewComponent, 
+		/* VIEWS - public */ FrontPageComponent, EventDetailComponent, EventsOverviewComponent, PageViewComponent, UserLoginComponent,
 		/* VIEWS - internal */ MembersListComponent, MemberDetailComponent, 
 		/* Shared Components */ EventListComponent, NewsListComponent, 
 		/* PIPES */ MoneyPipe

@@ -20,12 +20,7 @@ export class UserService {
 	token: String = null;
 
 	constructor(private http: Http){
-		this.user = {
-			"_id": "58773d714cd9b90495d2adb9",
-			"login": "kopec",
-			"name": "Kopec"
-		};
-		//this.refreshState();
+		this.refreshState();
 	}
 
 	saveToken(token){
@@ -64,6 +59,10 @@ export class UserService {
 				}
 				return null;				
 			});
+	}
+
+	emailLogin(email){
+		return this.http.post("/api/login/email", {"email":email}).toPromise();
 	}
 
 	logout(){

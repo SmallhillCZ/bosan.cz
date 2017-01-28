@@ -1,0 +1,42 @@
+<div>
+
+	<h1>Přihlášení</h1>
+
+	<form class="form-horizontal" (ngSubmit)="login()" #loginForm="ngForm">
+		<div class="form-group">
+			<label for="inputEmail" class="col-sm-2 control-label">Tvůj e-mail:</label>
+			<div class="col-sm-6">
+				<input type="email" name="inputEmail" class="form-control" id="inputEmail" placeholder="gandalf@bosan.cz" [(ngModel)]="loginData.email" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassword" class="col-sm-2 control-label">Heslo</label>
+			<div class="col-sm-6">
+				<input type="password" name="inputLogin" class="form-control" id="inputPassword" placeholder="dnopytle12" [(ngModel)]="loginData.password" required pattern="^(?=.*[a-zA-Z])(?=.*\d).{8,}$">
+				<p class="help-block">Heslo musí mít alespoň 8 znaků, z toho alespoň jedno číslo a jedno písmeno.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-6">
+				<button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Přihlásit se</button>
+			</div>
+		</div>
+	</form>
+	
+	<h3>Jendorázové přihlášení</h3>
+	<form class="form-horizontal" (ngSubmit)="emailLogin()" #emailLoginForm="ngForm">
+		<div class="form-group">
+			<label for="inputEmail2" class="col-sm-2 control-label">Tvůj oddílový e-mail:</label>
+			<div class="col-sm-6">
+				<input type="email" name="inputEmail" class="form-control" id="inputEmail2" placeholder="gandalf@bosan.cz" [(ngModel)]="loginData.email" required>
+				<p class="help-block">Bude ti odeslán email s přihlašovacím odkazem.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-6">
+				<button type="submit" class="btn btn-default" [disabled]="!emailLoginForm.form.valid">Přihlásit se</button>
+			</div>
+		</div>
+	</form>
+	
+</div>

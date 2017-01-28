@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ToastService } 		from './services/toast.service';
+import { UserService } 		from './services/user.service';
 
 @Component({
 	moduleId: module.id,
@@ -10,8 +11,8 @@ import { ToastService } 		from './services/toast.service';
 })
 export class AppComponent {
 	toasts: Array<any>;
-
-	constructor(public toastService: ToastService) {
+	
+	constructor(public toastService: ToastService, private userService: UserService) {
 		this.toasts = this.toastService.toasts;		
 	}
 

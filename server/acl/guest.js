@@ -24,5 +24,10 @@ module.exports = {
 		"list": true,
 		"read": true,
 		"write": true
+	},
+	
+	"users": {
+		"create": true,
+		"login": true
 	}
 };

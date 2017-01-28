@@ -25,6 +25,8 @@ router.use("/news", require("./news"));
 
 router.use("/users", require("./users"));
 
+router.use("/login", require("./login"));
+
 router.use("/members", require("./members"));
 
 router.use("/pages", require("./pages"));

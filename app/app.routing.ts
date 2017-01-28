@@ -6,6 +6,7 @@ import { EventsOverviewComponent }  from './views/events-overview/events-overvie
 import { PageViewComponent }  from './views/page-view/page-view.component';
 import { MembersListComponent }  from './views/members-list/members-list.component';
 import { MemberDetailComponent }  from './views/member-detail/member-detail.component';
+import { UserLoginComponent }  from './views/user-login/user-login.component';
 
 const appRoutes: Routes = [
 	
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
 	{path: 'clenove/:id',component: MemberDetailComponent},
 	{path: 'clenove',component: MembersListComponent},
 	
+	{path: 'login',component: UserLoginComponent},
 	
 	{path: '', redirectTo: 'novinky', pathMatch: 'full'}
 	

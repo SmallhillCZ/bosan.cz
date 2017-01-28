@@ -62,4 +62,8 @@ export class DataService {
 	savePage(id,data){
 		return this.http.put("/api/pages/" + id, data).toPromise().then(response => response.json());
 	}
+	
+	createUser(data){
+		return this.http.post("/api/users", data).toPromise().then(response => response.json());
+	}
 }
