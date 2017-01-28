@@ -12,7 +12,7 @@ import { UserService } 		from './services/user.service';
 export class AppComponent {
 	toasts: Array<any>;
 	
-	constructor(public toastService: ToastService, private userService: UserService) {
+	constructor(public toastService: ToastService, public userService: UserService) {
 		this.toasts = this.toastService.toasts;		
 	}
 
