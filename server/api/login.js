@@ -31,7 +31,7 @@ function createToken(user){
 
 router.post("/", acl("users","login"), (req,res) => {
 	
-	if(!req.body.email) return res.status(400).send("Login missing.");
+	if(!req.body.email) return res.status(400).send("Email missing.");
 
 	User.findOne({email:req.body.email.toLowerCase()}).then((user) => {
 

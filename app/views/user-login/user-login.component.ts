@@ -27,7 +27,18 @@ export class UserLoginComponent{
 				this.toastService.toast("Jsi přihlášen/a.","notice");
 				this.router.navigate(['/']);
 			})
-			.catch(err => this.toastService.toast("Nastala chyba při přihlašování.","error"));
+			.catch(err => {
+				switch(err.status){
+					case 404:
+						this.toastService.toast("Uživatel s tímto emailem neexistuje.","error");
+						return;
+					case 401:
+						this.toastService.toast("Chyné heslo.","error");
+						return;
+					default:
+						this.toastService.toast("Nastala chyba při přihlašování.","error");
+				}
+			});
 	}
 
 	emailLogin(){
