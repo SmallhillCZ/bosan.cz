@@ -1,6 +1,7 @@
 // load roles from separate files 
 var aclRoles = {};
 aclRoles["guest"] = require("./acl/guest");
+aclRoles["leader"] = require("./acl/leader");
 
 // function to evaluate single permission
 function evalPermission(permission,req){
@@ -54,7 +55,7 @@ var acl = function(resource,operation){
 		var result = acl_check(resource,operation,req);
 		
 		// log access
-		console.log("ACL " + (result ? "OK" : "XX") + ": " + resource + "/" + operation + (req.user ? " (user: " + req.user._id + "; roles: " + (req.user.roles ? req.user.roles.join(",") : "") + ")" : " (guest)"));
+		console.log("ACL " + (result ? "OK" : "XX") + ": " + resource + "/" + operation + (req.user ? " (user: " + req.user._id + "; roles: " + (req.user.roles ? req.user.roles.join(",") : "") + ")" : " (no auth)"));
 		
 		// if permission granted, send execution to the next middleware/route
 		if(result) next();

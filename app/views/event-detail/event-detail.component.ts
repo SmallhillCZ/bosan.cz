@@ -14,19 +14,17 @@ import { UserService } from '../../services/user.service';
 export class EventDetailComponent {
 	
 	event;
+	oldEvent
+	
+	edit:string = null;
 	
 	view = "detail";
-	
-	user: any;
 
-	constructor(private dataService: DataService, private toastService: ToastService, private userService: UserService, private route: ActivatedRoute) {
-		
-		this.user = this.userService.user;
-		
-		this.route.params.subscribe((params: Params) => this.loadEvent(params['id']));
+	constructor(private dataService: DataService, private toastService: ToastService, private route: ActivatedRoute) {		
+		this.route.params.subscribe((params: Params) => this.load(params['id']));
 	}
 
-	loadEvent(id){
+	load(id){
 		
 		this.toastService.loading(true);
 		
@@ -41,30 +39,25 @@ export class EventDetailComponent {
 				this.event = null;
 			});
 	}
-	
-	getRSVP(event){
-		if(!event.rsvp) event.rsvp = [];
-		return event.rsvp.some(user => user._id == this.user._id);
-	}
 
-	setRSVP(event,attending){
+	save(){
 		
-		if(this.getRSVP(event) === attending) return;
+		var savingToast = this.toastService.toast("Ukládám...","notice");
 		
-		var oldRSVP = JSON.parse(JSON.stringify(event.rsvp));
-		
-		event.rsvp = event.rsvp.filter(item => item._id != this.user._id);
-		if(attending) event.rsvp.push(this.user);
-		
-		this.dataService.setRSVP(event._id,this.user._id,attending)
-			.then(rsvp => {
-				event.rsvp = rsvp;
-				this.toastService.toast("Uloženo.","warning");
+		this.dataService.saveEvent(this.event._id,this.event)
+			.then(() => {
+				savingToast.hide();
+				this.toastService.toast("Uloženo.","notice");
+				this.edit = null;
 			})
 			.catch(err => {
-				event.rsvp = oldRSVP;			
-				this.toastService.toast("Nepodařilo se uložit účast na akci.","error");
+				savingToast.hide();
+				this.toastService.toast("Chyba při ukládání.","error");
 			});
+	}
+
+	cancel(){
+		this.edit = null;
 	}
 
 }

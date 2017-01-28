@@ -24,11 +24,8 @@ export class EventListComponent implements OnInit {
 	page: number = 1;
 	
 	events;
-	
-	user: any;
 
-	constructor(private dataService: DataService, private toastService: ToastService, private userService: UserService){
-		this.user = this.userService.user;
+	constructor(private dataService: DataService, private toastService: ToastService){
 	}
 	 
 	 ngOnInit(){
@@ -65,31 +62,6 @@ export class EventListComponent implements OnInit {
 	 
 	getEventLink(event){
 		return ['/akce',event.url ? event.url : event._id];
-	}
-	
-	getRSVP(event){
-		if(!event.rsvp) event.rsvp = [];
-		return event.rsvp.some(user => user._id == this.user._id);
-	}
-
-	setRSVP(event,attending){
-		
-		if(this.getRSVP(event) === attending) return;
-		
-		var oldRSVP = JSON.parse(JSON.stringify(event.rsvp));
-		
-		event.rsvp = event.rsvp.filter(item => item._id != this.user._id);
-		if(attending) event.rsvp.push(this.user);
-		
-		this.dataService.setRSVP(event._id,this.user._id,attending)
-			.then(rsvp => {
-				event.rsvp = rsvp;
-				this.toastService.toast("Uloženo.","warning");
-			})
-			.catch(err => {
-				event.rsvp = oldRSVP;			
-				this.toastService.toast("Nepodařilo se uložit účast na akci.","error");
-			});
 	}
 
 }

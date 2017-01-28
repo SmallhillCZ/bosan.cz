@@ -14,7 +14,7 @@ function createToken(user){
 		var tokenData = {
 			"_id": user._id,
 			"name": user.name,
-			"role": user.roles
+			"roles": user.roles
 		};
 
 		// generate token with 1 day validity
@@ -45,7 +45,7 @@ router.post("/", acl("users","login"), (req,res) => {
 					.catch(err => res.sendStatus(500));
 				
 			} else {
-				res.status(401).send("Wrong password for user \"" + user.login + "\".");
+				res.status(401).send("Wrong password.");
 			}
 		});
 		

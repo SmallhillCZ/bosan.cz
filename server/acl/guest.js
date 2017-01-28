@@ -3,31 +3,18 @@ module.exports = {
 	"events": {
 		"read": true,
 		"list": true,
-		"readRSVP": true,
-		"writeRSVP": true
 	},
 
-	"users": {
-		"list": true
+	"users": {		
+		"login": true
 	},
 	
 	"news": {
-		"list": true	
-	},
-	
-	"members": {
 		"list": true,
 		"read": true
 	},
 	
 	"pages": {
-		"list": true,
-		"read": true,
-		"write": true
-	},
-	
-	"users": {
-		"create": true,
-		"login": true
+		"read": true
 	}
 };

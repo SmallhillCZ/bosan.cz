@@ -34,9 +34,8 @@ export class DataService {
 			return this.http.get("/api/events/" + id).toPromise().then(response => response.json());
 	}
 	
-	setRSVP(eventId,userId,attending){
-		if(attending === false) return this.http.delete("/api/events/" + eventId + "/rsvp/" + userId).toPromise().then(response => response.json());
-		else return this.http.put("/api/events/" + eventId + "/rsvp/" + userId,{}).toPromise().then(response => response.json());
+	saveEvent(id,data){
+		return this.authHttp.put("/api/events/" + id,data).toPromise();
 	}
 	
 	getNews(options?) {
@@ -60,7 +59,7 @@ export class DataService {
 	}
 	
 	savePage(id,data){
-		return this.http.put("/api/pages/" + id, data).toPromise().then(response => response.json());
+		return this.authHttp.put("/api/pages/" + id, data).toPromise().then(response => response.json());
 	}
 	
 	createUser(data){
