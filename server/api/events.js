@@ -11,10 +11,10 @@ var Event = require("../models/event");
 router.get("/", acl("events","list"), (req,res) => {
 	
 	var query = {};
-	var options = {select: "_id name url description from till"};
+	var options = {select: "_id name url description startDate endDate"};
 	
-	if(req.query.from) query.till = {$gt: new Date(req.query.from)};
-	if(req.query.till) query.from = {$lt: new Date(req.query.till)};
+	if(req.query.from) query.startDate = {$gt: new Date(req.query.from)};
+	if(req.query.till) query.endDate = {$lt: new Date(req.query.till)};
 	
 	if(req.query.sort) options.sort = {"from": req.query.sort === "desc" ? -1 : 1};
 	if(req.query.limit) options.limit = Number(req.query.limit);

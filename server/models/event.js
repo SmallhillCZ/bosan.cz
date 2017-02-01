@@ -4,8 +4,10 @@ var eventSchema = mongoose.Schema({
 	"name": String,
 	"url": { type: String, index: true },
 	"description":String,
-	"from": Date,
-	"till": Date,
+	"startDate": Date,
+	"startPlace": String,
+	"endDate": Date,
+	"endPlace": String,
 	"rsvp": [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
 });
 

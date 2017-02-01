@@ -9,6 +9,8 @@ input:invalid, textarea:invalid{
   border-left: 5px solid #a94442; /* red */
 }
 
+.editing{outline:#ff0 solid 1px;}
+
 #loading:after {
   overflow: hidden;
   display: inline-block;

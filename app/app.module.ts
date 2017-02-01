@@ -8,6 +8,7 @@ import { AppComponent }  from './app.component';
 // Views components - public
 import { FrontPageComponent }  from './views/front-page/front-page.component';
 import { EventDetailComponent }  from './views/event-detail/event-detail.component';
+import { EventInfoComponent }  from './views/event-detail/event-info/event-info.component';
 import { EventsOverviewComponent }  from './views/events-overview/events-overview.component';
 import { PageViewComponent }  from './views/page-view/page-view.component';
 import { UserLoginComponent }  from './views/user-login/user-login.component';
@@ -28,6 +29,9 @@ import { UserService } 		from './services/user.service';
 import { EventListComponent }  from './shared/components/event-list/event-list.component';
 import { NewsListComponent }  from './shared/components/news-list/news-list.component';
 
+// Directives
+import { ContentToolsModule } from 'ng2-content-tools';
+
 // Pipes
 import { MoneyPipe } from './shared/pipes/money.pipe';
 
@@ -42,18 +46,17 @@ export function getAuthHttp(http) {
 
 @NgModule({
   imports: [
-		BrowserModule,
-		HttpModule,
-		FormsModule,
-		routing
-		//FileUploadModule
+		/* Angular */ BrowserModule, HttpModule, FormsModule,
+		/* routing */ routing,
+		/* vendor */ ContentToolsModule.forRoot()
 	],
   declarations: [
 		AppComponent, 
-		/* VIEWS - public */ FrontPageComponent, EventDetailComponent, EventsOverviewComponent, PageViewComponent, UserLoginComponent,
+		/* VIEWS - public */ FrontPageComponent, EventDetailComponent, EventInfoComponent, EventsOverviewComponent, PageViewComponent, UserLoginComponent,
 		/* VIEWS - internal */ MembersListComponent, MemberDetailComponent, 
 		/* Shared Components */ EventListComponent, NewsListComponent, 
 		/* PIPES */ MoneyPipe
+		/* Directives */
 	],
 	providers: [
 		/* SERVICES */ DataService, ToastService, UserService,

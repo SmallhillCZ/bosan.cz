@@ -43,7 +43,7 @@ export class DataService {
 	}
 	
 	getMembers(options?){
-		return this.http.get("/api/members" + (options ? "?" + toParams(options) : "")).toPromise().then(response => response.json());
+		return this.authHttp.get("/api/members" + (options ? "?" + toParams(options) : "")).toPromise().then(response => response.json());
 	}
 	
 	getMember(id){

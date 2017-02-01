@@ -4,7 +4,7 @@
 		
 		<h3>{{event.name}}</h3>
 		
-		<p>Od: {{event.from | date:'EEE d. M. y'}}, Do: {{event.till | date:'EEE d. M. y'}}</p>
+		<p>Od: {{event.startDate | date:'EEE d. M. y'}}, Do: {{event.endDate | date:'EEE d. M. y'}}</p>
 		
 		<p [innerHTML]="event.description"></p>
 		

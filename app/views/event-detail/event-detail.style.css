@@ -4,8 +4,8 @@
 .edit{font-size:.7em;opacity:.3;cursor:pointer;}
 .edit:hover{opacity:1 !important;}
 
-h1 .edit,h2 .edit{opacity:0;}
-h1:hover .edit,h2:hover .edit{opacity:.3;}
+h1 .edit{opacity:0;}
+h1:hover .edit{opacity:.3;}
 
 
 .btn-group button{outline:none;}

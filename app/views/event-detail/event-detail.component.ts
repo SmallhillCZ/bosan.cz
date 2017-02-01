@@ -18,10 +18,11 @@ export class EventDetailComponent {
 	
 	edit:string = null;
 	
-	view = "detail";
+	view = "info";
 
 	constructor(private dataService: DataService, private toastService: ToastService, private route: ActivatedRoute) {		
 		this.route.params.subscribe((params: Params) => this.load(params['id']));
+		
 	}
 
 	load(id){
