@@ -1,11 +1,13 @@
 .na{text-decoration: line-through;}
 
+h1{color:#fff;text-shadow:0 0 5px rgba(0,0,0,.2);margin:0;}
 
-.edit{font-size:.7em;opacity:.3;cursor:pointer;}
-.edit:hover{opacity:1 !important;}
+.heading{position:relative;height:150px;background-color:#9ac2dc;}
+.heading .buttons{position:absolute;bottom:10px;left:10px;}
+.heading h1{position:absolute;top:10px;left:10px;}
 
-h1 .edit{opacity:0;}
-h1:hover .edit{opacity:.3;}
-
+.edit{position:absolute;top:10px;right:10px;opacity:.3;cursor:pointer;width:100px;}
+.edit.active, .edit:hover{opacity:1 !important;}
+.edit button{cursor:pointer;display:block;width:100%;}
 
 .btn-group button{outline:none;}

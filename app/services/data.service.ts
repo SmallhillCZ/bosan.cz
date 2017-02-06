@@ -38,6 +38,15 @@ export class DataService {
 		return this.authHttp.put("/api/events/" + id,data).toPromise();
 	}
 	
+	uploadEventImage(id){
+		if(!id) return null;
+		var url = "/api/events/" + id + "/image";
+		return new FileUploader({
+			url: url,
+			authToken: "Bearer " + window.localStorage.getItem("id_token")
+		});
+	}
+	
 	getNews(options?) {
 			return this.http.get("/api/news" + (options ? "?" + toParams(options) : "")).toPromise().then(response => response.json());
 	}

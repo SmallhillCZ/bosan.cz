@@ -18,10 +18,7 @@ export class AppComponent {
 	}
 
 	ngOnInit(){
-		this.ctService.init({
-			fixture: (el) => el.hasAttribute('data-fixture'),
-			ignition: false
-		});
+		this.ctService.init("*[content-tools]","name",(el) => el.hasAttribute('data-fixture'),false);
 	}
 
 }

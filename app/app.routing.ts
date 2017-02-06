@@ -16,8 +16,9 @@ const appRoutes: Routes = [
 	
   {path: 'novinky',component: FrontPageComponent},
 	
-	{path: 'akce/program',component: EventsOverviewComponent},
-	{path: 'akce/:id',component: EventDetailComponent},
+	{path: 'program-akci',component: EventsOverviewComponent},
+	{path: 'akce/:id/:view',component: EventDetailComponent},
+	{path: 'akce/:id', redirectTo: 'akce/:id/info', pathMatch: 'full'},
 	{path: 'akce', redirectTo: 'akce/program', pathMatch: 'full'},
 	
 	{path: 'stranka/:id',component: PageViewComponent},

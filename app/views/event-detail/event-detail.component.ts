@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { Router, ActivatedRoute, Params }   from '@angular/router';
 
 import { DataService } from '../../services/data.service';
 import { ToastService } from '../../services/toast.service';
 import { UserService } from '../../services/user.service';
+import { ContentToolsService } from "ng2-content-tools";
 
 @Component({
 	moduleId: module.id,
@@ -14,15 +15,33 @@ import { UserService } from '../../services/user.service';
 export class EventDetailComponent {
 	
 	event;
-	oldEvent
+	oldEvent;
 	
-	edit:string = null;
+	editMode = false;
 	
 	view = "info";
 
-	constructor(private dataService: DataService, private toastService: ToastService, private route: ActivatedRoute) {		
-		this.route.params.subscribe((params: Params) => this.load(params['id']));
-		
+	constructor(private dataService: DataService, private toastService: ToastService, private router:Router, private route: ActivatedRoute, private ctService:ContentToolsService) {		
+		this.route.params.subscribe((params: Params) => {
+			if(!this.event || (this.event._id !== params['id'] && this.event.url !== params['id'])) this.load(params['id']);
+			this.view = params["view"] ? params["view"] : "info";
+		});
+	}
+
+	openView(view){
+		if(view === this.view) return;
+		if(this.editMode) this.editStop();
+		this.router.navigate(["../" + view], { relativeTo: this.route });
+	}
+
+	editStart(){
+		this.ctService.start('.event *[content-tools]',e => this.save());
+		this.editMode = true;
+	}
+
+	editStop(){
+		this.ctService.stop(true);
+		this.editMode = false;
 	}
 
 	load(id){
@@ -42,23 +61,18 @@ export class EventDetailComponent {
 	}
 
 	save(){
-		
+
 		var savingToast = this.toastService.toast("Ukládám...","notice");
 		
 		this.dataService.saveEvent(this.event._id,this.event)
 			.then(() => {
 				savingToast.hide();
 				this.toastService.toast("Uloženo.","notice");
-				this.edit = null;
 			})
 			.catch(err => {
 				savingToast.hide();
 				this.toastService.toast("Chyba při ukládání.","error");
 			});
-	}
-
-	cancel(){
-		this.edit = null;
 	}
 
 }

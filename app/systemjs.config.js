@@ -21,7 +21,7 @@
     'app':                        { main: 'index.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
 		//'ng2-bootstrap':              { defaultExtension: 'js' },
-		'ng2-file-upload':            { defaultExtension: 'js' },
+		'ng2-file-upload':            { defaultExtension: 'js', main: "index.js" },
 		'angular2-jwt':     	        { defaultExtension: 'js', main: "angular2-jwt.js"},
 		'moment': 										{ defaultExtension: 'js', main: 'moment.js'},
 		'ContentTools': 							{ defaultExtension: 'js', main: "build/content-tools.js"},

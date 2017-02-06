@@ -1,20 +1,12 @@
 <div *ngIf="page" class="page">
 
 	<h1>{{page.title}}</h1>
-
-	<div *ngIf="!editMode" class="content" [innerHTML]="page.body"></div>
-
-	<div *ngIf="editMode">
-		<textarea name="body" [(ngModel)]="page.body"></textarea>
-		<button type="button" (click)="pageSave()">Uložit</button>
-	</div>
 	
-	<hr>
-
-	<div class="row">
-		<div class="col-md-6 text-left">{{page.changed | date:'EEE d. M. y'}}</div>
-		<div class="col-md-6 text-right"><a (click)="editMode=true">upravit</a></div>
-		
+	<div class="edit" role="group">
+		<button *ngIf="!editMode" (click)="editStart()" type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Upravit</button>
+		<button *ngIf="editMode" (click)="editStop(true)" type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Zavřít</button>
 	</div>
+
+	<div content-tools [(ngModel)]="page.body" autosave="2000" name="page" class="content"></div>
 	
 </div>

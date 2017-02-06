@@ -4,6 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
 import { DataService } from '../../services/data.service';
 
+import { ContentToolsService } from "ng2-content-tools";
+
 @Component({
 	moduleId: module.id,
   selector: 'page-view',
@@ -16,7 +18,7 @@ export class PageViewComponent implements OnInit {
 	
 	editMode: boolean = false;
 
-	constructor(private toastService: ToastService, private dataService: DataService, private route: ActivatedRoute) {
+	constructor(private toastService: ToastService, private dataService: DataService, private route: ActivatedRoute, private ctService:ContentToolsService) {
 	}
 	
 	ngOnInit(){
@@ -38,20 +40,27 @@ export class PageViewComponent implements OnInit {
 		});
 	}
 	
-	pageSave(){
-		
-		// save old page in case of failure
-		var oldPage = JSON.parse(JSON.stringify(this.page));
-		
+	editStart(){
+		this.ctService.start('.page *[content-tools]',e => this.save());
+		this.editMode = true;
+	}
+
+	editStop(){
+		this.ctService.stop(true);
 		this.editMode = false;
+	}
+	
+	save(){
+		
+		var loadingToast = this.toastService.toast("Ukládám...","notice");
 		
 		this.dataService.savePage(this.page._id,this.page)
 			.then(page => {
 				this.page = page;
+				loadingToast.hide();
 				this.toastService.toast("Uloženo","notice");
 			})
 			.catch(err => {
-				this.page = oldPage;
 				this.toastService.toast("Nastala chyba při ukládání stránky: " + err,"error");
 			});
 		

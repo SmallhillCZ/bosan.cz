@@ -11,7 +11,7 @@ var Event = require("../models/event");
 router.get("/", acl("events","list"), (req,res) => {
 	
 	var query = {};
-	var options = {select: "_id name url description startDate endDate"};
+	var options = {select: "_id name url perex startDate endDate"};
 	
 	if(req.query.from) query.startDate = {$gt: new Date(req.query.from)};
 	if(req.query.till) query.endDate = {$lt: new Date(req.query.till)};

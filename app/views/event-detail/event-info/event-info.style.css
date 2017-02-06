@@ -1,8 +1,3 @@
-
-.edit{font-size:.7em;opacity:.3;cursor:pointer;}
-.edit:hover{opacity:1 !important;}
-
-h2 .edit{opacity:0;cursor:pointer;}
-h2:hover .edit{opacity:.3;}
-
 table{width:auto;}
+
+.perex{background-color:#eee;font-weight:bold;}

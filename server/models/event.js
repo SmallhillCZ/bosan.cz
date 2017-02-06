@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var eventSchema = mongoose.Schema({
 	"name": String,
 	"url": { type: String, index: true },
+	"perex": String,
 	"description":String,
 	"startDate": Date,
 	"startPlace": String,

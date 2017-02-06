@@ -9,13 +9,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class EventInfoComponent {
 	
 	@Input() event:any;
-	 
-	@Output() save = new EventEmitter();
-	
-	edit = {
-		description: false,
-		takeWith: false
-	};
 
 	constructor() {
 	}
@@ -27,13 +20,4 @@ export class EventInfoComponent {
 	setEndDate(date){
 		this.event.endDate = new Date(date);
 	}
-	 
-	saveEvent(){
-		this.edit = {
-			description: false,
-			takeWith: false
-		};
-		this.save.emit();
-	}
-
 }

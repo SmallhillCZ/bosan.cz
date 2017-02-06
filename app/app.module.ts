@@ -23,7 +23,7 @@ import { ToastService } 		from './services/toast.service';
 import { UserService } 		from './services/user.service';
 
 // Import Modules
-//import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 
 // Shared coremponents
 import { EventListComponent }  from './shared/components/event-list/event-list.component';
@@ -48,7 +48,8 @@ export function getAuthHttp(http) {
   imports: [
 		/* Angular */ BrowserModule, HttpModule, FormsModule,
 		/* routing */ routing,
-		/* vendor */ ContentToolsModule.forRoot()
+		/* vendor */ ContentToolsModule, FileUploadModule
+		
 	],
   declarations: [
 		AppComponent, 

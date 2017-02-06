@@ -21,6 +21,14 @@ input:invalid, textarea:invalid{
   width: 0px;
 }
 
+
+*[content-tools]{text-align:center;}
+*[content-tools] h1,*[content-tools] h2{text-align:left;}
+*[content-tools] p{text-align:justify;}
+*[content-tools] img{margin:10px;}
+*[content-tools] img.align-right{float:right;margin:0 0 5px 10px;}
+*[content-tools] img.align-left{float:left;margin:0 10px 5px 0 ;}
+
 @keyframes ellipsis {
   to {
     width: 15px;    

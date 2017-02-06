@@ -1,27 +1,20 @@
-
-<h2>Termín a místo</h2>
-
 <div class="row">
-	<div>
-		<table class="table table-condensed">
-			<tr>
-				<th>Začátek: </th>
-				<td>{{event.startDate | date:'EEE d. M. y'}}, {{event.startPlace}}</td>
-			</tr>
-			<tr>
-				<th>Konec: </th>
-				<td>{{event.endDate | date:'EEE d. M. y'}}, {{event.endPlace}}</td>			
-			</tr>
-			<tr>
-				<th>Jídlo: </th>
-				<td>{{event.food}}</td>
-			</tr>
-		</table>
+	<div class="col-md-10">
+		<p>
+			Začátek: {{event.startDate | date:'EEE d. M. y'}}, {{event.startPlace}}<br>
+			Konec: {{event.endDate | date:'EEE d. M. y'}}, {{event.endPlace}}<br>
+			Jídlo: {{event.food}}
+		</p>
+	</div>
+	<div class="col-md-2">
+		<h3><a>Přihláška</a></h3>
 	</div>
 </div>
 
-<h2>Popis <a (click)="edit.description=true" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
-<div content-tools [(ngModel)]="event.description" [editing]="edit.description" (save)="saveEvent()" (stop)="edit.description=false"></div>
+<p content-tools [(ngModel)]="event.perex" class="perex" autosave="2000" name="perex"></p>
 
-<h2>Co s sebou <a (click)="edit.takeWith=true" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
-<div content-tools [(ngModel)]="event.takeWith" [editing]="edit.takeWith" (save)="saveEvent()" (stop)="edit.takeWith=false"></div>
+<div class="description">
+	<div content-tools [(ngModel)]="event.description" autosave="2000" name="description"></div>
+</div>
+
+

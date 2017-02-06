@@ -6,7 +6,7 @@
 		
 		<p>Od: {{event.startDate | date:'EEE d. M. y'}}, Do: {{event.endDate | date:'EEE d. M. y'}}</p>
 		
-		<p [innerHTML]="event.description"></p>
+		<div [innerHTML]="event.perex"></div>
 		
 		<p><a [routerLink]="getEventLink(event)">Detail akce</a></p>
 		
