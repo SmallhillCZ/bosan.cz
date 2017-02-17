@@ -9,7 +9,10 @@ var eventSchema = mongoose.Schema({
 	"startPlace": String,
 	"endDate": Date,
 	"endPlace": String,
-	"rsvp": [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
+	"attending": [{
+		"member": {type: mongoose.Schema.Types.ObjectId, ref: "Member"},
+		"role": String
+	}]
 });
 
 module.exports = mongoose.model('Event', eventSchema);

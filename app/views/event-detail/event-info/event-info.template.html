@@ -1,3 +1,8 @@
+<div class="tools" [class.active]="editMode" role="group">
+	<button *ngIf="!editMode" (click)="editStart()" type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Upravit</button>
+	<button *ngIf="editMode" (click)="editStop()" type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Uložit</button>
+</div>
+
 <div class="row">
 	<div class="col-md-10">
 		<p>
@@ -11,10 +16,8 @@
 	</div>
 </div>
 
-<p content-tools [(ngModel)]="event.perex" class="perex" autosave="2000" name="perex"></p>
+<p content-tools [(ngModel)]="event.perex" class="perex" name="perex"></p>
 
 <div class="description">
-	<div content-tools [(ngModel)]="event.description" autosave="2000" name="description"></div>
+	<div content-tools [(ngModel)]="event.description" name="description"></div>
 </div>
-
-

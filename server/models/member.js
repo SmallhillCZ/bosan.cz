@@ -23,7 +23,9 @@ var memberSchema = mongoose.Schema({
 		"mobile": String,
 		"mother": String,
 		"father": String
-	}
+	},
+	
+	"birthday": Date
 	
 });
 

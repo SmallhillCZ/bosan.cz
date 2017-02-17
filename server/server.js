@@ -5,8 +5,8 @@ var compression = require('compression');
 app.use(compression());
 
 var bodyParser = require("body-parser");
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.json({limit:"5mb"})); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true, limit:"5mb" })); // support encoded bodies
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/bosan-cz');

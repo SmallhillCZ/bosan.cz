@@ -1,47 +1,28 @@
 <div *ngIf="event" class="event">
 	<div class="heading">
-		<h1 content-tools [(ngModel)]="event.name" data-fixture="true" name="name"></h1>
+		<h1>{{event.name}}</h1>
 
 		<div class="buttons btn-group btn-group-sm" role="group">
 			<button (click)="openView('info')" [class.active]="view=='info'" type="button" class="btn btn-default">Popis a přihláška</button>
 			<button (click)="openView('kronika')" [class.active]="view=='kronika'" type="button" class="btn btn-default">Kronika</button>
 			<button (click)="openView('galerie')" [class.active]="view=='galerie'" type="button" class="btn btn-default">Fotogalerie</button>
 			<button (click)="openView('seznam-ucastniku')" [class.active]="view=='seznam-ucastniku'" type="button" class="btn btn-default">Seznam účastníků</button>
-			<button (click)="openView('uctovani')" [class.active]="view=='uctovani'" type="button" class="btn btn-default">Účtování</button>
-		</div>
-		
-		<div *ngIf="view=='info'" class="edit" [class.active]="editMode" role="group">
-			<button *ngIf="!editMode" (click)="editStart()" type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Upravit</button>
-			<button *ngIf="editMode" (click)="editStop()" type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Uložit</button>
+			<button (click)="openView('vydaje')" [class.active]="view=='vydaje'" type="button" class="btn btn-default">Výdaje</button>
+			<button (click)="openView('vyuctovani')" [class.active]="view=='vyuctovani'" type="button" class="btn btn-default">Vyúčtování</button>
 		</div>
 
 	</div>
 
 	<div [ngSwitch]="view">
 		
-		<div *ngSwitchCase="'info'">
-			<div class="row">
-				<div class="col-md-10">
-					<p>
-						Začátek: {{event.startDate | date:'EEE d. M. y'}}, {{event.startPlace}}<br>
-						Konec: {{event.endDate | date:'EEE d. M. y'}}, {{event.endPlace}}<br>
-						Jídlo: {{event.food}}
-					</p>
-				</div>
-				<div class="col-md-2">
-					<h3><a>Přihláška</a></h3>
-				</div>
-			</div>
-
-			<p content-tools [(ngModel)]="event.perex" class="perex" name="perex"></p>
-
-			<div class="description">
-				<div content-tools [(ngModel)]="event.description" name="description"></div>
-			</div>
-		</div>
+		<event-info *ngSwitchCase="'info'" [event]="event" (save)="save()"></event-info>
 		
-		<div *ngSwitchCase="'report'">
+		
+		
+		<div *ngSwitchCase="'kronika'">
 			<div content-tools [(ngModel)]="event.report" name="report"></div>
 		</div>
+		
+		<event-attending *ngSwitchCase="'seznam-ucastniku'" [event]="event" (save)="save($event)"></event-attending>
 	</div>
 </div>

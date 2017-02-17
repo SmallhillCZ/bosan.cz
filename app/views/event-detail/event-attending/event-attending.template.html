@@ -1,0 +1,129 @@
+<div class="tools" [class.active]="editMode" role="group">
+	<button *ngIf="!editMode" (click)="startEdit()" type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Upravit</button>
+	<button *ngIf="editMode" (click)="stopEdit()" type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Uložit</button>
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+					<th>0-14</th>
+					<td>{{getAgeCount(0,14)}}</td>
+				</tr>
+				<tr>
+					<th>15-17</th>
+					<td>{{getAgeCount(15,17)}}</td>
+				</tr>
+				<tr>
+					<th>18+</th>
+					<td>{{getAgeCount(18,99)}}</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Celkem</th>
+					<td>{{event.attending?.length}}</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<div class="col-md-3">
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+					<th>Dítě</th>
+					<td>{{getRoleCount("d")}}</td>
+				</tr>
+				<tr>
+					<th>Instruktor</th>
+					<td>{{getRoleCount("i")}}</td>
+				</tr>
+				<tr>
+					<th>Vedoucí</th>
+					<td>{{getRoleCount("v")}}</td>
+				</tr>
+				<tr>
+					<th>Hlavní vedoucí</th>
+					<td>{{getRoleCount("h")}}</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Celkem</th>
+					<td>{{event.attending?.length}}</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+
+<div class="attending">
+	<div class="row">
+		<div *ngIf="editMode" class="col-md-5">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Oddíl</th>
+						<th>Přezdívka</th>
+						<th>Jméno</th>
+						<th>Příjmení</th>
+						<th>Věk*</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let member of members" (click)="addMember(member)">
+						<td><a (click)="addMember(member)"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+						<td>{{member.squad}}</td>
+						<td>{{member.nickname}}</td>
+						<td>{{member.name?.first}}</td>
+						<td>{{member.name?.last}}</td>
+						<td>{{getMemberAge(member)}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div [class]="editMode ? 'col-md-7' : 'col-md-12'">
+			<table class="table">
+				<thead>
+					<tr>
+						<th *ngIf="editMode"></th>
+						<th>Oddíl</th>
+						<th>Přezdívka</th>
+						<th>Jméno</th>
+						<th>Příjmení</th>
+						<th>Věk*</th>
+						<th>Funkce</th>
+					</tr>
+				</thead>
+				<tbody> 
+					<tr *ngFor="let attending of event.attending">
+						<td *ngIf="editMode"><a (click)="removeMember(attending.member)"><i class="fa fa-minus-circle" aria-hidden="true"></i></a></td>
+						<td>{{attending.member.squad}}</td>
+						<td>{{attending.member.nickname}}</td>
+						<td>{{attending.member.name?.first}}</td>
+						<td>{{attending.member.name?.last}}</td>
+						<td>{{getMemberAge(attending.member)}}</td>
+						<td>
+							<select *ngIf="editMode" [(ngModel)]="attending.role">
+								<option value="d">dítě</option>
+								<option value="i">instruktor</option>
+								<option value="v">vedoucí</option>
+								<option value="h">hlavní vedoucí</option>
+							</select>
+							<span *ngIf="!editMode" [ngSwitch]="attending.role">
+								<span *ngSwitchCase="'d'">dítě</span>
+								<span *ngSwitchCase="'i'">instruktor</span>
+								<span *ngSwitchCase="'v'">vedoucí</span>
+								<span *ngSwitchCase="'h'">hlavní vedoucí</span>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<p>* Věk v době začátku akce</p>
+</div>

@@ -32,7 +32,7 @@ router.get("/:id", acl("events","list"), (req,res) => {
 	// if ID is 24 character string it might be Event._id:ObjectId or Event.url:String, otherwise it can be just Event.url
 	var where = req.params.id.match(/^[0-9a-fA-F]{24}$/) ? {$or: [{url:req.params.id},{_id:req.params.id}]} : {url:req.params.id};
 	
-	Event.findOne(where)
+	Event.findOne(where).populate("attending.member","_id nickname name squad birthday")
 		.then(event => event ? res.json(event) : res.sendStatus(404))
 		.catch(err => res.status(500).json(err));
 	

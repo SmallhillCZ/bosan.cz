@@ -7,13 +7,13 @@ app.use(bodyParser.urlencoded({ extended: true, limit:"5mb" })); // support enco
 
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/bosan-cz');
 mongoose.Promise = global.Promise;
+mongoose.plugin(require("mongoose-paginate"));
+mongoose.connect('mongodb://localhost/bosan-cz');
+
 
 var mongo_express = require('mongo-express/lib/middleware');
 var mongo_express_config = require('./mongo-config.js');
-mongoose.plugin(require("mongoose-paginate"));
-
 app.use('/db', mongo_express(mongo_express_config))
 
 app.use("/api",require("./api/index"));
