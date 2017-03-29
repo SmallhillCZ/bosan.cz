@@ -1,28 +1,49 @@
 <div *ngIf="event" class="event">
-	<div class="heading">
-		<h1>{{event.name}}</h1>
+	
+	
+	
+	<div class="row">
+		<div class="col-md-3">
+			
+			<div class="header">
 
-		<div class="buttons btn-group btn-group-sm" role="group">
-			<button (click)="openView('info')" [class.active]="view=='info'" type="button" class="btn btn-default">Popis a přihláška</button>
-			<button (click)="openView('kronika')" [class.active]="view=='kronika'" type="button" class="btn btn-default">Kronika</button>
-			<button (click)="openView('galerie')" [class.active]="view=='galerie'" type="button" class="btn btn-default">Fotogalerie</button>
-			<button (click)="openView('seznam-ucastniku')" [class.active]="view=='seznam-ucastniku'" type="button" class="btn btn-default">Seznam účastníků</button>
-			<button (click)="openView('vydaje')" [class.active]="view=='vydaje'" type="button" class="btn btn-default">Výdaje</button>
-			<button (click)="openView('vyuctovani')" [class.active]="view=='vyuctovani'" type="button" class="btn btn-default">Vyúčtování</button>
+				<h1>{{event.name}}</h1>
+
+				<p>
+					Začátek: {{event.startDate | date:'EEE d. M. y'}}, {{event.startPlace}}<br>
+					Konec: {{event.endDate | date:'EEE d. M. y'}}, {{event.endPlace}}<br>
+					Jídlo: {{event.food}}
+				</p>
+
+				<a>Přihláška</a>
+			</div>
+			
+			<ul class="nav nav-pills nav-stacked">
+				<li routerLinkActive="active"><a routerLink="../info">Informace</a></li>
+				<li routerLinkActive="active"><a routerLink="../kronika">Kronika</a></li>
+				<li routerLinkActive="active"><a routerLink="../galerie">Galerie</a></li>
+				<li routerLinkActive="active"><a routerLink="../seznam-ucastniku">Seznam účastníků</a></li>
+				<li routerLinkActive="active"><a routerLink="../vydaje">Výdaje</a></li>
+				<li routerLinkActive="active"><a routerLink="../vyuctovani">Vyúčtování</a></li>
+			</ul>
+
 		</div>
 
-	</div>
+		<div  class="col-md-9">
+			
+			<div [ngSwitch]="view">
+				
+				<event-info *ngSwitchCase="'info'" [event]="event" (save)="save()"></event-info>
+				
+				<div *ngSwitchCase="'kronika'">
+					<div content-tools [(ngModel)]="event.report" name="report"></div>
+				</div>
 
-	<div [ngSwitch]="view">
-		
-		<event-info *ngSwitchCase="'info'" [event]="event" (save)="save()"></event-info>
-		
-		
-		
-		<div *ngSwitchCase="'kronika'">
-			<div content-tools [(ngModel)]="event.report" name="report"></div>
+				<event-attending *ngSwitchCase="'seznam-ucastniku'" [event]="event" (save)="save($event)"></event-attending>
+
+				<event-expenses *ngSwitchCase="'vydaje'" [event]="event" (save)="save($event)"></event-expenses>
+			</div>
+			
 		</div>
-		
-		<event-attending *ngSwitchCase="'seznam-ucastniku'" [event]="event" (save)="save($event)"></event-attending>
 	</div>
 </div>

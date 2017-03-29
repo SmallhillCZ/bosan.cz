@@ -9,7 +9,7 @@
     '@angular':                   'node_modules/@angular',
     'rxjs':                       'node_modules/rxjs',
 		'papaparse': 									'node_modules/papaparse',
-		//'ng2-bootstrap': 							'node_modules/ng2-bootstrap',
+		'@ng-bootstrap/ng-bootstrap': 'node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
 		'ng2-file-upload':						'node_modules/ng2-file-upload',
 		'angular2-jwt':								'node_modules/angular2-jwt',
 		'moment': 										'node_modules/moment',

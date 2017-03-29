@@ -6,55 +6,69 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
 
-		<div class="col-md-2">
-			<nav>
-				<ul class="nav nav-pills nav-stacked">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
 					<li routerLinkActive="active"><a routerLink="/novinky">Novinky</a></li>
 					<li routerLinkActive="active"><a routerLink="/stranka/o-nas">O nás</a></li>
-					<li routerLinkActive="active">
-						<a routerLink="/akce">Akce</a>
-						<ul>
-							<li routerLinkActive="active"><a routerLink="/program-akci">Program akcí</a></li>
-							<li><a>Uskutečněné akce</a></li>
+					<li routerLinkActive="active"><a routerLink="/stranka/oddily">Oddíly</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button">Oddíly <span class="caret"></span></a>
+						<ul *ngIf="">
+							<li><a>3. oddíl</a></li>
+							<li><a>4. oddíl</a></li>
+							<li><a>5. oddíl</a></li>
+							<li><a>6. oddíl</a></li>
+							<li><a>7. oddíl</a></li>
+							<li><a>8. oddíl</a></li>
+							<li><a>22. oddíl</a></li>
+							<li><a>Klub přátel</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a>1. oddíl</a></li>
+							<li><a>2. oddíl</a></li>
+							<li><a>oddíl Uhřínovských</a></li>
 						</ul>
 					</li>
+					<li routerLinkActive="active"><a routerLink="/program-akci">Akce</a></li>
 					<li><a>Tábor</a></li>
 					<li><a>Kroniky</a></li>
-					<li><a>Fotogalerie</a></li>
+					<li><a>Fotogalerie</a></li>        
 				</ul>
 				
-				<hr>
-				<ul class="nav nav-pills nav-stacked">
+				<ul class="nav navbar-nav navbar-right">
 
-					<li><a>Troja</a></li>
-					<li><a>Vodák roku</a></li>
+					<li class="dropdown" [class.open]="menuDropdown.ostatni">
+						<a (click)="dropdownToggle('ostatni')" class="dropdown-toggle" data-toggle="dropdown" role="button">??? <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a>Troja</a></li>
+							<li><a>Vodák roku</a></li>
+						</ul>
+					</li>
 
-					<li>
-						<a>Interní</a>
-						<ul>
+					<li class="dropdown" [class.open]="menuDropdown.interni">
+						<a (click)="dropdownToggle('interni')" class="dropdown-toggle" data-toggle="dropdown" role="button">Interní <span class="caret"></span></a>
+						<ul class="dropdown-menu">
 							<li routerLinkActive="active"><a routerLink="/clenove">Členská databáze</a></li>
 							<li><a>Dokumenty</a></li>
 						</ul>
 					</li>
 					
 				</ul>
-			</nav>
+			</div>
 		</div>
+	</nav>
 
-		<div class="col-md-10">
-			<router-outlet></router-outlet>
-		</div>
-
-	</div>
+	<router-outlet></router-outlet>
 
 </div>
 
 <footer>
 	<div class="container text-muted small">
 		<div class="col-sm-4 col-xs-12">
-			S <i class="fa fa-heart" aria-hidden="true"></i> vytvořil <a href="https://smallhill.cz">Martin Kopeček</a>
+			S <i class="fa fa-heart" aria-hidden="true"></i> vytvořil <a href="https://smallhill.cz">Kopec</a> z <a routerLink="/stranka/22-oddil">22. oddílu</a>
 		</div>
 		<div class="col-sm-4 col-xs-12 text-center">
 			<a href="https://facebook.com/bosan.cz">

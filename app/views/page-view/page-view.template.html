@@ -1,10 +1,38 @@
-<div *ngIf="page" class="page">
+<div class="page">
 	
-	<div class="edit" role="group">
+	<div *ngIf="!notFound" class="edit" role="group">
 		<button *ngIf="!editMode" (click)="editStart()" type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Upravit</button>
-		<button *ngIf="editMode" (click)="editStop(true)" type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Zavřít</button>
+		<button *ngIf="editMode" (click)="editStop(false)" type="button" class="btn btn-default"><i class="fa fa-floppy-o" aria-hidden="true"></i> Zrušit</button>
+		<button *ngIf="editMode" (click)="editStop(true)" type="button" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Uložit</button>
+	</div>
+	
+	<div *ngIf="editMode">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="input-title" class="col-sm-2 control-label">Titulek</label>
+				<div class="col-sm-6">				
+					<input name="title" type="text" class="form-control" id="input-title" [(ngModel)]="page.title">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-title" class="col-sm-2 control-label">Adresa</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<div class="input-group-addon">https://bosan.cz/stranka/</div>
+						<input name="url" type="text" class="form-control" id="input-title" [(ngModel)]="page.url">
+					</div>
+				</div>
+			</div>
+		</form>
+
+	</div>
+	
+	<div *ngIf="notFound">
+		<h1>Nenalezeno :(</h1>
+		<p>Stránka s touto adresou neexistuje.</p>
+		<p><a (click)="createPage()">Vytvořit stránku na této adrese</a></p>
 	</div>
 
-	<div content-tools [(ngModel)]="page.body" autosave="2000" name="page" class="content"></div>
+	<div content-tools [(ngModel)]="page.body" name="page" class="content"></div>
 	
 </div>

@@ -50,6 +50,7 @@ export class EventAttendingComponent {
 	  this.event.attending.splice(i,1);
 	}
 	 
+	 /*
 	getAgeCount(ageFrom,ageTo){
 		var i = 0;
 		var age;
@@ -66,7 +67,7 @@ export class EventAttendingComponent {
  		 if(attending.role === role) i++;
 	  });
 		return i;
-	}
+	}*/
 
 	ngOnDestroy(){
 	}

@@ -1,11 +1,16 @@
 <div class="row">
 	
-	<div class="col-md-7 news">
+	<h1 class="hidden">Novinky</h1>
+	
+	<div class="col-md-8 events">
+		<news-list limit="5"></news-list>
+	</div>
+	
+	<div class="col-md-4 news">
+		<h2>Co náš čeká</h2>
 		<event-list limit="5" sort="asc" [from]="listFrom"></event-list>
 	</div>
 	
-	<div class="col-md-5 events">
-		<news-list limit="5"></news-list>
-	</div>
+	
 	
 </div>

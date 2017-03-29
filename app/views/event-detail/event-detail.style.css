@@ -2,12 +2,4 @@
 
 h1{color:#fff;text-shadow:0 0 5px rgba(0,0,0,.2);margin:0;}
 
-.heading{position:relative;height:150px;background-color:#9ac2dc;}
-.heading .buttons{position:absolute;bottom:10px;left:10px;}
-.heading h1{position:absolute;top:10px;left:10px;}
-
-/*.edit{position:absolute;top:10px;right:10px;opacity:.3;cursor:pointer;width:100px;}*/
-.tools{padding:5px;text-align:right;background-color:#ddf;}
-.tools button{cursor:pointer;cursor:pointer;}
-
-.btn-group button{outline:none;}
+.header{position:relative;background-color:#9ac2dc;}

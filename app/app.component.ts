@@ -11,7 +11,14 @@ import { ContentToolsService } from 'ng2-content-tools';
 	styleUrls: ['app.style.css']
 })
 export class AppComponent {
+	
 	toasts: Array<any>;
+	
+	menuDropdown = {
+		oddil: false,
+		ostatni: false,
+		interni: false
+	};
 	
 	constructor(public toastService: ToastService, public userService: UserService, private ctService: ContentToolsService) {
 		this.toasts = this.toastService.toasts;		
@@ -19,6 +26,10 @@ export class AppComponent {
 
 	ngOnInit(){
 		this.ctService.init("*[content-tools]","name",(el) => el.hasAttribute('data-fixture'),false);
+	}
+
+	dropdownToggle(id){
+		this.menuDropdown[id] = !this.menuDropdown[id];
 	}
 
 }

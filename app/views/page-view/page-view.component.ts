@@ -6,6 +6,17 @@ import { DataService } from '../../services/data.service';
 
 import { ContentToolsService } from "ng2-content-tools";
 
+
+class Page {
+	_id: string;
+	title: string;
+	url: string;
+	body: string;
+	files: string[];
+	created: Date;
+	changed: Date;
+}
+
 @Component({
 	moduleId: module.id,
   selector: 'page-view',
@@ -14,9 +25,13 @@ import { ContentToolsService } from "ng2-content-tools";
 })
 export class PageViewComponent implements OnInit {
 	
-	page;
+	page:Page = new Page();
+
+	url:string;
 	
 	editMode: boolean = false;
+	
+	notFound: boolean = false;
 
 	constructor(private toastService: ToastService, private dataService: DataService, private route: ActivatedRoute, private ctService:ContentToolsService) {
 	}
@@ -27,17 +42,37 @@ export class PageViewComponent implements OnInit {
 		
 		this.route.params.forEach((params: Params) => {
 			
-			this.dataService.getPage(params["id"])
-				.then(page => {
-					this.toastService.loading(false);
-					this.page = page;
-				})
-				.catch(err => {
-					this.toastService.loading(false);
-					this.page = null;
-					this.toastService.toast("Chyba při načítání stránky","error");
-				});
+			this.url = params["id"];
+			
+			this.loadPage(this.url);
+
 		});
+	}
+	
+	loadPage(url){
+		
+		if(this.editMode) this.editStop(false);
+		
+		this.dataService.getPage(url)
+			.then(page => {
+				this.toastService.loading(false);
+				this.page = page;
+				this.notFound = false;
+			})
+			.catch(err => {
+				this.toastService.loading(false);
+				this.page = new Page();
+				this.notFound = true;
+			});
+	}
+	
+	createPage(){
+		this.page = new Page();
+		this.page.url = this.url;
+		this.page.title = "Nová stránka";
+		this.page.body = "<h1>Nadpis</h1><h2>Podnadpis</h2><p>Zde je obsah vaší nové stránky</p>";
+		this.editStart();
+		this.notFound = false;
 	}
 	
 	editStart(){
@@ -45,9 +80,10 @@ export class PageViewComponent implements OnInit {
 		this.editMode = true;
 	}
 
-	editStop(){
-		this.ctService.stop(true);
+	editStop(save){
+		this.ctService.stop(save);
 		this.editMode = false;
+		if(!save) this.loadPage(this.url);
 	}
 	
 	save(){

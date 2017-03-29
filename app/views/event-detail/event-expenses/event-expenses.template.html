@@ -1,0 +1,29 @@
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Doklad č.</th>
+      <th>Popis výdaje</th>
+      <th>Částka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let expense of event.expenses">
+      <td>V<input type="number" name="id" [(ngModel)]="expense.id"></td>
+      <td><input type="text" name="description" [(ngModel)]="expense.description"></td>
+      <td><input type="number" name="amount" [(ngModel)]="expense.amount"> Kč</td>
+      <td><a (click)="removeExpense(expense)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+    </tr>
+    <tr class="add" (keyup.enter)="addExpense()">
+      <td>V<input type="number" name="new_id" [(ngModel)]="newExpense.id" [placeholder]="getMaxId()"></td>
+      <td><input type="text" name="new_description" [(ngModel)]="newExpense.description" required placeholder="Cesta tam a zase zpátky" #focusField></td>
+      <td><input type="number" name="new_amount" [(ngModel)]="newExpense.amount" required placeholder="0"> Kč</td>
+      <td></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <td></td>
+    <td></td>
+    <td>{{getTotalExpenses()}}</td>
+    <td></td>
+  </tfoot>
+</table>

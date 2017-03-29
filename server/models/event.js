@@ -11,7 +11,13 @@ var eventSchema = mongoose.Schema({
 	"endPlace": String,
 	"attending": [{
 		"member": {type: mongoose.Schema.Types.ObjectId, ref: "Member"},
-		"role": String
+		"role": String,
+		"days": Number
+	}],
+	"expenses": [{
+		"id": Number,
+		"description": String,
+		"amount": Number
 	}]
 });
 
